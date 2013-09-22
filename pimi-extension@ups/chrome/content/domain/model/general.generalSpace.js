@@ -146,10 +146,11 @@ GeneralSpace.prototype = {
 		/*var params = 'emailAddress=' + emailAddress + '&userName=' + name + '&password=' + password;
 		var url = serverAddress + usersCreateUrl;
 		var response = 'aucune';
-		var urlToSend = url + '?' + params;
 		var httpRequest = this.utilityTool.initHttpRequest();
-		httpRequest.open('GET', urlToSend, true);
-		httpRequest.send(null);
+		httpRequest.open('POST', url, true);
+		httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		httpRequest.setRequestHeader("Content-length", params.length);
+		httpRequest.setRequestHeader("Connection", "close");
 		httpRequest.onreadystatechange = function() {
 			if (httpRequest.readyState == 4) {
 				if (httpRequest.status == 200) {
@@ -173,7 +174,8 @@ GeneralSpace.prototype = {
 					this.pluginContext.getElementById('account_creation_create_button').setAttribute('disabled', 'false');
 				}
 			}
-		};*/
+		};
+		httpRequest.send(params);*/
 	},
 	switchToPimiAccountCreation: function() {
 		var accountConnexionForm = this.pluginContext.getElementById(ACCOUNT_SIGNIN_PANEL_ID);
@@ -214,10 +216,11 @@ GeneralSpace.prototype = {
 		var params = 'userName=' + userName + '&password=' + password;
 		var url = serverAddress + usersConnectUrl;
 		var response = 'aucune';
-		var urlToSend = url + '?' + params;
 		var httpRequest = this.utilityTool.initHttpRequest();
-		httpRequest.open('GET', urlToSend, true);
-		httpRequest.send(null);
+		httpRequest.open('POST', url, true);
+		httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		httpRequest.setRequestHeader("Content-length", params.length);
+		httpRequest.setRequestHeader("Connection", "close");
 		httpRequest.onreadystatechange = function() {
 			if (httpRequest.readyState == 4) {
 				if (httpRequest.status == 200) {
@@ -239,6 +242,7 @@ GeneralSpace.prototype = {
 				}
 			}
 		};
+		httpRequest.send(params);
 	},
 	connectPimiUser: function(userName, sessionToken) {
 		var user = new User(this.getUniqueRandomId(20),
@@ -264,10 +268,11 @@ GeneralSpace.prototype = {
 					 	 '&sessionToken=' + this.personalSpace.getUser().getSessionToken();
 			var url = serverAddress + usersDisconnectUrl;
 			var response = 'aucune';
-			var urlToSend = url + '?' + params;
 			var httpRequest = this.utilityTool.initHttpRequest();
-			httpRequest.open('GET', urlToSend, true);
-			httpRequest.send(null);
+			httpRequest.open('POST', url, true);
+			httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			httpRequest.setRequestHeader("Content-length", params.length);
+			httpRequest.setRequestHeader("Connection", "close");
 			httpRequest.onreadystatechange = function() {
 				if (httpRequest.readyState == 4) {
 					if (httpRequest.status == 200) {
@@ -290,6 +295,7 @@ GeneralSpace.prototype = {
 					}
 				}
 			};
+			httpRequest.send(params);
 		}
 	},
 	/*-----------------------------------------------

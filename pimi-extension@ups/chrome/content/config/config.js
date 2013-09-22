@@ -2,9 +2,9 @@
 var serverAddress = 'http://piaff-test.winckler.webfactional.com';
 var rootPrefix = '/';
 var piaffHomeUrl = rootPrefix;
-var pimisGetUrl = rootPrefix + 'pimis/get.php';
-var pimisShowUrl = rootPrefix + 'pimis/show.php';
-var pimisUpdateUrl = rootPrefix + 'pimis/update.php';
+var pimisGetUrl = rootPrefix + 'pims/get.php';
+var pimisShowUrl = rootPrefix + 'pims/show.php';
+var pimisUpdateUrl = rootPrefix + 'pims/update.php';
 var usersCreateUrl = rootPrefix + 'users/create.php';
 var usersConnectUrl = rootPrefix + 'users/connect.php';
 var usersDisconnectUrl = rootPrefix + 'users/disconnect.php';

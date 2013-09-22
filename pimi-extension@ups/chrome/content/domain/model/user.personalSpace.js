@@ -83,10 +83,11 @@ PersonalSpace.prototype = {
 					 '&sessionToken=' + this.user.getSessionToken();
 		var url = serverAddress + pimisGetUrl;
 		var response = 'aucune';
-		var urlToSend = url + '?' + params;
 		var httpRequest = this.utilityTool.initHttpRequest();
-		httpRequest.open('GET', urlToSend, true);
-		httpRequest.send(null);
+		httpRequest.open('POST', url, true);
+		httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		httpRequest.setRequestHeader("Content-length", params.length);
+		httpRequest.setRequestHeader("Connection", "close");
 		httpRequest.onreadystatechange = function() {
 			if (httpRequest.readyState == 4) {
 				if (httpRequest.status == 200) {
@@ -117,6 +118,7 @@ PersonalSpace.prototype = {
 					alert(pimsLoadProblemMessage);
 			}
 		};
+		httpRequest.send(params);
 	},
 	save: function() {
 		//if(confirm(pimsSaveConfirmationMessage)) {
@@ -129,10 +131,11 @@ PersonalSpace.prototype = {
 						 	 '&xmldoc=' + this.utilityTool.XMLToString(pimsXmlDoc);
 				var url = serverAddress + pimisUpdateUrl;
 				var response = 'aucune';
-				var urlToSend = url + '?' + params;
 				var httpRequest = this.utilityTool.initHttpRequest();
-				httpRequest.open('GET', urlToSend, true);
-				httpRequest.send(null);
+				httpRequest.open('POST', url, true);
+				httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				httpRequest.setRequestHeader("Content-length", params.length);
+				httpRequest.setRequestHeader("Connection", "close");
 				httpRequest.onreadystatechange = function() { 
 					if (httpRequest.readyState == 4) {
 						if (httpRequest.status == 200) {
@@ -147,6 +150,7 @@ PersonalSpace.prototype = {
 							alert(pimsSaveProblemMessage);
 					}
 				};
+				httpRequest.send(params);
 			}
 			else
 				setTimeout(this.save, 1000);
