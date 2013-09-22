@@ -39,7 +39,7 @@ PersonalSpace.prototype = {
 		//this.enablePimsCompletion();
 		//this.enableInputsSemanticDetection();
     	/************** TO WORK IN LOCAL --> TO DELETE !!!! **************/
-		/*var pimsXmlDoc = this.utilityTool.loadXMLDoc('pimsFileTest.xml');
+		/*var pimsXmlDoc = this.utilityTool.loadXMLDoc('data/pims/pimsTestFile.xml');
 		this.pimsManager.import(pimsXmlDoc);
     	this.createView();*/
 		/*****************************************************************/
