@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<pimgroup groupname="hAddress" category="">
-	<pim name="Street number" value="" description="The street number" annotationtype="microformat" microformatclass="hcard" microformatsubclass="adr" microformatsubclassattribute="street-number"/>
-	<pim name="Street address" value="" description="The street address" annotationtype="microformat" microformatclass="hcard" microformatsubclass="adr" microformatsubclassattribute="street-address"/>
-	<pim name="Postal code" value="" description="The postal code" annotationtype="microformat" microformatclass="hcard" microformatsubclass="adr" microformatsubclassattribute="postal-code"/>
-	<pim name="Locality" value="" description="The locality" annotationtype="microformat" microformatclass="hcard" microformatsubclass="adr" microformatsubclassattribute="locality"/>
-	<pim name="Region" value="" description="The region" annotationtype="microformat" microformatclass="hcard" microformatsubclass="adr" microformatsubclassattribute="region"/>
-	<pim name="Country name" value="" description="The country name" annotationtype="microformat" microformatclass="hcard" microformatsubclass="adr" microformatsubclassattribute="country-name"/>
-</pimgroup>
+<pim name="hAddress" category="">
+	<pimElement name="Street number" value="" description="The street number" annotationtype="microformat" microformatclass="hcard" microformatsubclass="adr" microformatsubclassattribute="street-number"/>
+	<pimElement name="Street address" value="" description="The street address" annotationtype="microformat" microformatclass="hcard" microformatsubclass="adr" microformatsubclassattribute="street-address"/>
+	<pimElement name="Postal code" value="" description="The postal code" annotationtype="microformat" microformatclass="hcard" microformatsubclass="adr" microformatsubclassattribute="postal-code"/>
+	<pimElement name="Locality" value="" description="The locality" annotationtype="microformat" microformatclass="hcard" microformatsubclass="adr" microformatsubclassattribute="locality"/>
+	<pimElement name="Region" value="" description="The region" annotationtype="microformat" microformatclass="hcard" microformatsubclass="adr" microformatsubclassattribute="region"/>
+	<pimElement name="Country name" value="" description="The country name" annotationtype="microformat" microformatclass="hcard" microformatsubclass="adr" microformatsubclassattribute="country-name"/>
+</pim>

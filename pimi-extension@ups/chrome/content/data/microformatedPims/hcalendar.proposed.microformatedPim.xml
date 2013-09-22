@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<pimgroup groupname="hCalendar" category="">
-	<pim name="Summary" value="" description="The summary" annotationtype="microformat" microformatclass="hcalendar" microformatsubclass="summary" microformatsubclassattribute="summary"/>
-	<pim name="Location" value="" description="The location" annotationtype="microformat" microformatclass="hcalendar" microformatsubclass="location" microformatsubclassattribute="location"/>
-	<pim name="Start date" value="" description="The start date" annotationtype="microformat" microformatclass="hcalendar" microformatsubclass="dtstart" microformatsubclassattribute="dtstart"/>
-	<pim name="End date" value="" description="The end date" annotationtype="microformat" microformatclass="hcalendar" microformatsubclass="dtend" microformatsubclassattribute="dtend"/>
-	<pim name="Url" value="" description="The url" annotationtype="microformat" microformatclass="hcalendar" microformatsubclass="url" microformatsubclassattribute="url"/>
-</pimgroup>
+<pim name="hCalendar" category="">
+	<pimElement name="Summary" value="" description="The summary" annotationtype="microformat" microformatclass="hcalendar" microformatsubclass="summary" microformatsubclassattribute="summary"/>
+	<pimElement name="Location" value="" description="The location" annotationtype="microformat" microformatclass="hcalendar" microformatsubclass="location" microformatsubclassattribute="location"/>
+	<pimElement name="Start date" value="" description="The start date" annotationtype="microformat" microformatclass="hcalendar" microformatsubclass="dtstart" microformatsubclassattribute="dtstart"/>
+	<pimElement name="End date" value="" description="The end date" annotationtype="microformat" microformatclass="hcalendar" microformatsubclass="dtend" microformatsubclassattribute="dtend"/>
+	<pimElement name="Url" value="" description="The url" annotationtype="microformat" microformatclass="hcalendar" microformatsubclass="url" microformatsubclassattribute="url"/>
+</pim>

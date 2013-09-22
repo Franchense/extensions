@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<pimgroup groupname="hLog" category="">
-	<pim name="User name" value="" description="The login identifier" annotationtype="microformat" microformatclass="hlog" microformatsubclass="identifier" microformatsubclassattribute="login-identifier"/>
-	<pim name="Password" value="" description="The login password" annotationtype="microformat" microformatclass="hlog" microformatsubclass="password" microformatsubclassattribute="login-password"/>
-	<pim name="Email address" value="" description="The email address" annotationtype="microformat" microformatclass="hlog" microformatsubclass="email" microformatsubclassattribute="login-email"/>
-</pimgroup>
+<pim name="hLog" category="">
+	<pimElement name="User name" value="" description="The login identifier" annotationtype="microformat" microformatclass="hlog" microformatsubclass="identifier" microformatsubclassattribute="login-identifier"/>
+	<pimElement name="Password" value="" description="The login password" annotationtype="microformat" microformatclass="hlog" microformatsubclass="password" microformatsubclassattribute="login-password"/>
+	<pimElement name="Email address" value="" description="The email address" annotationtype="microformat" microformatclass="hlog" microformatsubclass="email" microformatsubclassattribute="login-email"/>
+</pim>

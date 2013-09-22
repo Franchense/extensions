@@ -103,7 +103,7 @@ MicroformatsManager.prototype = {
 				var microformatGroupsDocElements = currentMicroformatDocElement.getElementsByTagName('microformatgroup');
 				for (var j = 0; j < microformatGroupsDocElements.length; j++) {
 					var currentMicroformatGroupDocElement = microformatGroupsDocElements[j];
-					var newMicroformatGroup = newMicroformat.addMicroformatGroup(currentMicroformatGroupDocElement.getAttribute('groupname'),
+					var newMicroformatGroup = newMicroformat.addMicroformatGroup(currentMicroformatGroupDocElement.getAttribute('name'),
 																				 currentMicroformatGroupDocElement.getAttribute('mandatory'));
 					var atomicMicroformatDocElements = currentMicroformatGroupDocElement.getElementsByTagName('microformatcomponent');
 					for (var k = 0; k < atomicMicroformatDocElements.length; k++) {

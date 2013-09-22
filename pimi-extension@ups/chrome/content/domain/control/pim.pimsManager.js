@@ -1,9 +1,9 @@
 /** Constants */
-var PIM_XML_TAG = 'pimgroup';
-var PIM_NAME_XML_TAG = 'groupname';
+var PIM_XML_TAG = 'pim';
+var PIM_NAME_XML_TAG = 'name';
 var PIM_CATEGORY_XML_TAG = 'category';
 
-var PIM_ELEMENT_XML_TAG = 'pim';
+var PIM_ELEMENT_XML_TAG = 'pimElement';
 var PIM_ELEMENT_NAME_XML_TAG = 'name';
 var PIM_ELEMENT_VALUE_XML_TAG = 'value';
 var PIM_ELEMENT_DESCRIPTION_XML_TAG = 'description';
