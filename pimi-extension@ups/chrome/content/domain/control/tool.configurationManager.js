@@ -8,6 +8,7 @@ ConfigurationManager
 **/
 function ConfigurationManager(personalSpace) {
 	this.autoSave = false;
+	this.showPimsElementsIconicMenus = false;
 	this.configXmlDoc = null;
     this.personalSpace = personalSpace;
 	this.pluginContext = personalSpace.getPluginContext();
@@ -39,9 +40,11 @@ ConfigurationManager.prototype = {
 	},
 	setDefault: function() {
 		this.autoSave = false;
+		this.showPimsElementsIconicMenus = false;
 	},
 	configure: function() {
 		this.personalSpace.setAutoSave(this.autoSave);
+		this.personalSpace.getPimsManager().setShowPimsElementsIconicMenus(this.showPimsElementsIconicMenus);
 	},
 	/*-----------------------------------------------
 		Import & export methods
@@ -54,6 +57,8 @@ ConfigurationManager.prototype = {
 			this.setConfigXmlDoc(configXmlDoc);
 			var save = configXmlDoc.getElementsByTagName('autosave')[0];
 			this.autoSave = save.getAttribute('enabled').toBoolean();
+			var showPimsElementsMenus = configXmlDoc.getElementsByTagName('showPimsElementsIconicMenus')[0];
+			this.showPimsElementsIconicMenus = showPimsElementsMenus.getAttribute('enabled').toBoolean();
 		}
 	},
 	export: function() {
@@ -76,6 +81,12 @@ ConfigurationManager.prototype = {
 	},
 	setAutoSave: function(autoSave) {
 		this.autoSave = autoSave;
+	},
+	getShowPimsElementsIconicMenus: function() {
+		return this.showPimsElementsIconicMenus;
+	},
+	setShowPimsElementsIconicMenus: function(showPimsElementsIconicMenus) {
+		this.showPimsElementsIconicMenus = showPimsElementsIconicMenus;
 	},
 	getConfigXmlDoc: function() {
 		return this.configXmlDoc;

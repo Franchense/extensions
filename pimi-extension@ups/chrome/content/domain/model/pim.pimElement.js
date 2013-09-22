@@ -34,14 +34,18 @@ PimElement.prototype = {
 		General methods
 	-----------------------------------------------*/
 	changeAnnotationValue: function(newAnnotationValue) {
-		this.setAnnotationValue(newAnnotationValue);
-		this.pimsManager.setDirty();
+		if(this.annotationValue != newAnnotationValue) {
+			this.annotationValue = newAnnotationValue;
+			this.pimsManager.setDirty();
+		}
 		this.setAnnotationValueEdited(false);
 		this.updateView();
 	},
 	changeValue: function(newValue) {
-		this.setValue(newValue);
-		this.pimsManager.setDirty();
+		if(this.value != newValue) {
+			this.value = newValue;
+			this.pimsManager.setDirty();
+		}
 		this.setValueEdited(false);
 		this.updateView();
 	},

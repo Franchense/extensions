@@ -187,6 +187,10 @@ PersonalSpaceXulInterfaceTool.prototype = {
         addPimCategoryGeneralContextualMenuItem.onclick = function(event) { personalSpace.getPimsManager().addCategoryDialog(''); };
         generalMenuPopup.appendChild(addPimCategoryGeneralContextualMenuItem);
         
+        generalMenuPopup.appendChild(this.getMenuSeparatorView());
+
+        generalMenuPopup.appendChild(this.getShowPimsElementsIconicMenusMenuView(personalSpace));
+        
         /*generalMenuPopup.appendChild(this.getMenuSeparatorView());
 
         var clearLogConsoleGeneralContextualMenuItem = this.getMenuItemView('images/console.png',menuContextualClearLogConsoleLabel);
@@ -420,6 +424,23 @@ PersonalSpaceXulInterfaceTool.prototype = {
 
         addMicroformatedPimsMenu.appendChild(addFormatedPimsMenuPopup);
         return addMicroformatedPimsMenu;
+    },
+    getShowPimsElementsIconicMenusMenuView: function(personalSpace) {
+        var showPimsElementsIconicMenusMenu = this.getMenuView('images/icon.png',menuContextualPimsElementsIconicMenusLabel);
+        var showPimsElementsIconicMenusMenuPopup = this.getMenuEmptyPopupView();
+
+        var hidePimsElementsIconicMenusMenuItem = this.getMenuItemView('images/disable.png',menuContextualHidePimsElementsIconicMenusLabel);
+        hidePimsElementsIconicMenusMenuItem.onclick = function(event) { personalSpace.getPimsManager().setShowPimsElementsIconicMenus(false);
+                                                                        personalSpace.getPimsManager().updateView(); };
+        showPimsElementsIconicMenusMenuPopup.appendChild(hidePimsElementsIconicMenusMenuItem);
+        
+        var showPimsElementsIconicMenusMenuItem = this.getMenuItemView('images/enable.png',menuContextualShowPimsElementsIconicMenusLabel);
+        showPimsElementsIconicMenusMenuItem.onclick = function(event) { personalSpace.getPimsManager().setShowPimsElementsIconicMenus(true);
+                                                                        personalSpace.getPimsManager().updateView(); };
+        showPimsElementsIconicMenusMenuPopup.appendChild(showPimsElementsIconicMenusMenuItem);
+
+        showPimsElementsIconicMenusMenu.appendChild(showPimsElementsIconicMenusMenuPopup);
+        return showPimsElementsIconicMenusMenu;
     },
     getCompletionWithPimsMenuView: function(personalSpace) {
         var completionWithPimsMenu = this.getMenuView('images/formEnabled.png',menuContextualCompletionWithPimsLabel);

@@ -6,6 +6,9 @@ var menuBarMicroformatsLabel = 'Microf.';
 
 var menuContextualAddPimCategoryLabel = 'Add a new category';
 var menuContextualClearLogConsoleLabel = 'Clear log console';
+var menuContextualPimsElementsIconicMenusLabel = 'Pims elements iconic menus';
+var menuContextualHidePimsElementsIconicMenusLabel = 'Hide';
+var menuContextualShowPimsElementsIconicMenusLabel = 'Show';
 var menuContextualCompletionWithPimsLabel = 'Completion with Pims';
 var menuContextualDisableCompletionWithPimsLabel = 'Stop';
 var menuContextualEnableCompletionWithPimsLabel = 'Start';

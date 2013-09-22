@@ -31,8 +31,8 @@ PimCategory.prototype = {
 		return this.selected;
 	},
 	rename: function(newName) {
-		if(this.canBeRenamed) {
-			this.setName(newName);
+		if(this.canBeRenamed && (this.name != newName)) {
+			this.name = newName;
 			this.pimsManager.setDirty();
 			this.updateTabView();
 		}

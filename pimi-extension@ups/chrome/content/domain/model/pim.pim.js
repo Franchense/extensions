@@ -75,8 +75,10 @@ Pim.prototype = {
 		}
 	},
 	changeName: function(newName) {
-		this.setName(newName);
-		this.pimsManager.setDirty();
+		if(this.name != newName) {
+			this.name = newName;
+			this.pimsManager.setDirty();
+		}
 		this.setNameEdited(false);
 		this.updateView();
 	},

@@ -121,12 +121,12 @@
 	overflow: hidden;
 }
 
-.pim_element_value_box {
-	margin-top: 2px;
-}
-
 .pim_element_annotation_value {
 	border-bottom: 1px dotted black;
+}
+
+.pim_element_value_box {
+	margin-top: 2px;
 }
 
 .pim_element_value {
@@ -146,7 +146,7 @@
 }
 
 .pim_element_annotation_value_textbox {
-    padding-bottom: 1px;
+	margin-bottom: 1px;
 }
 
 .pim_element_value_textbox {
@@ -164,7 +164,7 @@
 }
 
 .pim_element_box .pim_element_edited_value_images {
-	margin-top: 1px;
+	margin-top: 0px;
 }
 
 .pim_element_edited_value_accept_image, .pim_element_edited_value_cancel_image {

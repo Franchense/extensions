@@ -34,6 +34,7 @@ function PimsManager(personalSpace) {
 	this.draggedPimElement = null;
 	this.draggedEmptyPimPicture = null;
 	this.draggedMicroformatPicture = null;
+	this.showPimsElementsIconicMenus = false;
 	this.pluginContext = personalSpace.getPluginContext();
     this.webPageDomContext = personalSpace.getWebPageDomContext();
     this.webPageJsContext = personalSpace.getWebPageJsContext();
@@ -472,6 +473,12 @@ PimsManager.prototype = {
 	},
 	setDraggedMicroformatPicture: function(draggedMicroformatPicture) {
 		this.draggedMicroformatPicture = draggedMicroformatPicture;
+	},
+	getShowPimsElementsIconicMenus: function() {
+		return this.showPimsElementsIconicMenus;
+	},
+	setShowPimsElementsIconicMenus: function(showPimsElementsIconicMenus) {
+		this.showPimsElementsIconicMenus = showPimsElementsIconicMenus;
 	},
 	getDraggedEmptyPimPicture: function() {
 		return this.draggedEmptyPimPicture;

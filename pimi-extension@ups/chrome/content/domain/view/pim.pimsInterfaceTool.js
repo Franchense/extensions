@@ -363,7 +363,7 @@ PimsXulInterfaceTool.prototype = {
 		var pimElementView = this.getPluginElement('hbox',['id','context'],
                                                  	  	  [pimElement.getId(),'pims_elements__contextual_menu']);
 		pimElementView.appendChild(this.getPimElementBodyView(pimElement));
-		if(!pimElement.isEdited())
+		if(!pimElement.isEdited() && pimElement.getPimsManager().getShowPimsElementsIconicMenus())
 			pimElementView.appendChild(this.getPimElementToolsBoxView(pimElement));
 		pimElementView.onclick = function(event) { pimElement.getPimsManager().setSelectedPimElement(pimElement); };
 		pimElementView.onmouseover = function(event) { obj.getPimElementToolsBoxDom(pimElement).style.display = 'block'; };
