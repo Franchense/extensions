@@ -1,8 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE overlay SYSTEM "chrome://pimi-extension/locale/pimi-extension@ups.com.dtd">
-<overlay id="pimi-extension-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"> 
-
-	<script type="application/x-javascript" src="config/config.js"/>
+<overlay id="pimi-extension-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
  
 	<menubar id="main-menubar">
 		<menu label="Pi@ff" accesskey="P">

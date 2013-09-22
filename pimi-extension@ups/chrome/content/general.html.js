@@ -4,7 +4,7 @@ Folders paths
 ---------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------*/
 var configFolderPath = "config/";
-var modelFolderPath = "model/";
+var domainFolderPath = "domain/";
 
 /*-------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------
@@ -14,7 +14,7 @@ Libraries import
 importJsScriptElement(configFolderPath + "config.js");
 importJsScriptElement(configFolderPath + "language.js");
 importJsScriptElement(configFolderPath + "style.js");
-importJsScriptElement(modelFolderPath + "model.js");
+importJsScriptElement(domainFolderPath + "domain.js");
 
 function importJsScriptElement(filePath) {
     var scriptElement =  document.createElement("script");

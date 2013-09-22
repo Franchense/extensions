@@ -19,44 +19,39 @@
 	<script type="application/x-javascript" src="config/language.js"></script>
 	<script type="application/x-javascript" src="config/style.js"></script>
 
-	<script type="application/x-javascript" src="model/tool.utilityTool.js"></script>
+	<script type="application/x-javascript" src="domain/model/tool.utilityTool.js"></script>
 
-	<script type="application/x-javascript" src="model/interface.generalInterfaceTool.js"></script>
-	<script type="application/x-javascript" src="model/interface.generalSpaceInterfaceTool.js"></script>
-	<script type="application/x-javascript" src="model/interface.personalSpaceInterfaceTool.js"></script>
-	<script type="application/x-javascript" src="model/interface.pimsInterfaceTool.js"></script>
-	<script type="application/x-javascript" src="model/interface.pimsInterfaceTool.js"></script>
-	<script type="application/x-javascript" src="model/interface.microformatsInterfaceTool.js"></script>
-	<script type="application/x-javascript" src="model/interface.annotationsInterfaceTool.js"></script>
+	<script type="application/x-javascript" src="domain/view/general.generalInterfaceTool.js"></script>
+	<script type="application/x-javascript" src="domain/view/general.generalSpaceInterfaceTool.js"></script>
+	<script type="application/x-javascript" src="domain/view/user.personalSpaceInterfaceTool.js"></script>
+	<script type="application/x-javascript" src="domain/view/pim.pimsInterfaceTool.js"></script>
+	<script type="application/x-javascript" src="domain/view/microformat.microformatsInterfaceTool.js"></script>
+	<script type="application/x-javascript" src="domain/view/annotation.annotationsInterfaceTool.js"></script>
 
-	<script type="application/x-javascript" src="model/manager.pimsManager.js"></script>
-	<script type="application/x-javascript" src="model/manager.annotationsManager.js"></script>
-	<script type="application/x-javascript" src="model/manager.microformatsManager.js"></script>
-	<script type="application/x-javascript" src="model/manager.userManager.js"></script>
-	<script type="application/x-javascript" src="model/manager.webPagesManager.js"></script>
-	<script type="application/x-javascript" src="model/manager.completionsManager.js"></script>
-	<script type="application/x-javascript" src="model/manager.configurationManager.js"></script>
+	<script type="application/x-javascript" src="domain/control/pim.pimsManager.js"></script>
+	<script type="application/x-javascript" src="domain/control/pim.completionsManager.js"></script>
+	<script type="application/x-javascript" src="domain/control/annotation.annotationsManager.js"></script>
+	<script type="application/x-javascript" src="domain/control/microformat.microformatsManager.js"></script>
+	<script type="application/x-javascript" src="domain/control/user.userManager.js"></script>
+	<script type="application/x-javascript" src="domain/control/web.webPagesManager.js"></script>
+	<script type="application/x-javascript" src="domain/control/tool.configurationManager.js"></script>
 
-	<script type="application/x-javascript" src="model/user.user.js"></script>
-	<script type="application/x-javascript" src="model/user.generalSpace.js"></script>
-	<script type="application/x-javascript" src="model/user.personalSpace.js"></script>
+	<script type="application/x-javascript" src="domain/model/general.generalSpace.js"></script>
+	<script type="application/x-javascript" src="domain/model/user.user.js"></script>
+	<script type="application/x-javascript" src="domain/model/user.personalSpace.js"></script>
+	<script type="application/x-javascript" src="domain/model/microformat.microformat.js"></script>
+	<script type="application/x-javascript" src="domain/model/microformat.microformatGroup.js"></script>
+	<script type="application/x-javascript" src="domain/model/microformat.atomicMicroformat.js"></script>
+	<script type="application/x-javascript" src="domain/model/pim.category.js"></script>
+	<script type="application/x-javascript" src="domain/model/pim.pim.js"></script>
+	<script type="application/x-javascript" src="domain/model/pim.pimElement.js"></script>
+	<script type="application/x-javascript" src="domain/model/web.webPage.js"></script>
+	<script type="application/x-javascript" src="domain/model/web.webPageElement.js"></script>
+	<script type="application/x-javascript" src="domain/model/annotation.atomicAnnotationTag.js"></script>
+	<script type="application/x-javascript" src="domain/model/annotation.elementAnnotation.js"></script>
+	<script type="application/x-javascript" src="domain/model/annotation.webPageAnnotation.js"></script>
 
 	<script type="application/x-javascript" src="general.xul.js"></script>
-
-	<script type="application/x-javascript" src="model/microformat.microformat.js"></script>
-	<script type="application/x-javascript" src="model/microformat.microformatGroup.js"></script>
-	<script type="application/x-javascript" src="model/microformat.atomicMicroformat.js"></script>
-
-	<script type="application/x-javascript" src="model/pim.category.js"></script>
-	<script type="application/x-javascript" src="model/pim.pim.js"></script>
-	<script type="application/x-javascript" src="model/pim.pimElement.js"></script>
-
-	<script type="application/x-javascript" src="model/web.webPage.js"></script>
-	<script type="application/x-javascript" src="model/web.webPageElement.js"></script>
-
-	<script type="application/x-javascript" src="model/annotation.atomicAnnotationTag.js"></script>
-	<script type="application/x-javascript" src="model/annotation.elementAnnotation.js"></script>
-	<script type="application/x-javascript" src="model/annotation.webPageAnnotation.js"></script>
 
 	<script type="application/x-javascript">
 	  <![CDATA[
