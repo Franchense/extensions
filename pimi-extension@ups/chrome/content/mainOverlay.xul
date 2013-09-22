@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE overlay SYSTEM "chrome://pimi-extension/locale/pimi-extension@ups.com.dtd">
+<overlay id="pimi-extension-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"> 
+
+	<script type="application/x-javascript" src="config/config.js"/>
+ 
+	<menubar id="main-menubar">
+		<menu label="Pi@ff" accesskey="P">
+			<menupopup>
+				<menuitem label="Annotations files page" class="menuitem-iconic" image="images/annotations.png" accesskey="A" oncommand="showAnnotationsFilesMainOverlay();"/>
+				<menuitem label="Microformats files page" class="menuitem-iconic" image="images/microformats.png" accesskey="M" oncommand="showMicroformatsFilesMainOverlay();"/>
+				<menuseparator/>
+				<menuitem label="Pi@ff home page" class="menuitem-iconic" image="images/logoIcon.png" accesskey="P" oncommand="showPimiHomeMainOverlay();"/>
+				<menuseparator/>
+				<menuitem label="Toggle Pi@ff side bar" class="menuitem-iconic" image="images/sidebar.png" accesskey="T" oncommand="showHidePimiSidebarMainOverlay();"/>
+			</menupopup>
+		</menu>
+	</menubar>
+
+	<popup id="contentAreaContextMenu">
+		<menuseparator/>
+		<menu label="Pi@ff" class="menu-iconic" image="images/logoIcon.png" accesskey="P">
+			<menupopup>
+				<menuitem label="Annotations files page" class="menuitem-iconic" image="images/annotations.png" accesskey="A" oncommand="showAnnotationsFilesMainOverlay();"/>
+				<menuitem label="Microformats files page" class="menuitem-iconic" image="images/microformats.png" accesskey="M" oncommand="showMicroformatsFilesMainOverlay();"/>
+				<menuseparator/>
+				<menuitem label="Pi@ff home page" class="menuitem-iconic" image="images/logoIcon.png" accesskey="P" oncommand="showPimiHomeMainOverlay();"/>
+				<menuseparator/>
+				<menuitem label="Toggle Pi@ff side bar" class="menuitem-iconic" image="images/sidebar.png" accesskey="T" oncommand="showHidePimiSidebarMainOverlay();"/>
+			</menupopup>
+		</menu>
+	</popup>
+
+	<broadcasterset id="mainBroadcasterSet">
+		<broadcaster id="PimiSidebar"
+			label="Pi@ff personal space"
+			autoCheck="false"
+			type="checkbox"
+			group="sidebar"
+			sidebarurl="chrome://pimi-extension/content/sideBar.xul"
+			sidebartitle="Pi@ff personal space"
+			oncommand="toggleSidebar('PimiSidebar');"/>
+	</broadcasterset>
+  
+	<menupopup id="viewSidebarMenu">
+		<menuitem observes="PimiSidebar" label="Pi@ff personal space"/>
+	</menupopup>
+  
+	<script type="application/x-javascript">
+		<![CDATA[
+			function showHidePimiSidebarMainOverlay() {	
+				toggleSidebar('PimiSidebar');
+			}
+			function showPimiHomeMainOverlay() {
+				content.wrappedJSObject.location = serverAddress + piaffHomeUrl;
+			}
+			function showMicroformatsFilesMainOverlay() {
+				content.wrappedJSObject.location = serverAddress + microformatsGetUrl;
+			}
+			function showAnnotationsFilesMainOverlay() {
+				content.wrappedJSObject.location = serverAddress + annotationsGetUrl;
+			}
+		]]>
+	</script>
+  
+</overlay>

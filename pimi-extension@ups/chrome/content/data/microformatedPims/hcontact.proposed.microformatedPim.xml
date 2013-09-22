@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pimgroup groupname="hContact" category="">
+	<pim name="Email address" value="" description="The private email address" annotationtype="microformat" microformatclass="hcard" microformatsubclass="email" microformatsubclassattribute="private-email"/>
+	<pim name="Phone number" value="" description="The private phone number" annotationtype="microformat" microformatclass="hcard" microformatsubclass="tel" microformatsubclassattribute="private-tel"/>
+	<pim name="Website" value="" description="The private website" annotationtype="microformat" microformatclass="hcard" microformatsubclass="url" microformatsubclassattribute="private-url"/>
+</pimgroup>

@@ -1,0 +1,262 @@
+#pims_form_groups_save_checkbox {
+	font-weight: bold;
+	font-style: italic;
+	margin: 7px 0px 2px 30px;
+}
+
+#pims_tabs {
+	margin-top: 25px;
+	margin-left: -24px;
+}
+
+.pims_tab {
+	cursor: pointer;
+	font-weight: bold;
+	font-style: italic;
+	text-align: center;
+	transform: rotate(-90deg); -moz-transform: rotate(-90deg); -webkit-transform: rotate(-90deg); -o-transform:rotate(-90deg);
+}
+
+.pims_tab_shift {
+	margin-top: 50px;
+}
+
+.pims_panel {
+	position: fixed;
+	width: 285px; height: 82%;
+	background: #c1d1e0;
+	padding: 3px 5px 3px 4px;
+	margin: -12px 0px 0px -38px;
+	overflow: auto;
+	overflow-x: hidden;
+}
+
+.pim {
+    width: 245px;
+    margin: 3px;
+	list-style: none;
+	text-align: center;
+    background-color: #ffd570;
+	border: outset #a67b25 2px;
+	border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; -khtml-border-radius: 5px;
+}
+
+.pim_name_box {
+	width: 220px;
+	overflow: hidden;
+}
+
+.pim_name, .pim_name_textbox {
+	text-align: left;
+	font-weight: bold;
+	text-shadow: 0 0 0 black, 0 0 0 black;
+}
+
+.pim_name, .pim_name_textbox {
+	margin: 2px 0px 3px 7px;
+}
+
+.pim_name {
+	width: 220px;
+	margin: 2px 0px 3px 7px;
+}
+
+.pim_name_textbox {
+	-moz-appearance: none;
+	width: 203px; height: 19px;
+    border: none;
+    padding: 0px;
+	margin-left: 6px;
+    background-color: #ffe8b0;
+	border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; -khtml-border-radius: 5px;
+}
+
+.pim_toggle_box {
+	margin: 7px 0px 0px 5px;
+}
+
+.pim_toggle_image {
+	width: 8px; height: 8px;
+	cursor: pointer;
+}
+
+.pim_body {
+	margin: 10px 0px 10px 20px;
+}
+
+.pim_elements_box {
+	position: relative; top: 0px; left: -10px;
+}
+
+.pim_element_box {
+	width: 185px; height: 45px;
+	padding: 12px 10px;
+	margin: 5px 0px;
+    background-color: #bfa86f;
+	border: solid #a67b25 1px;
+	border-radius: 2px; -moz-border-radius: 2px; -webkit-border-radius: 2px; -khtml-border-radius: 2px;
+}
+
+.pim_element_box:first-child {
+	margin-top: 0px;
+}
+
+.pim_element_box:last-child {
+	margin-bottom: 0px;
+}
+
+.pim_element_tools_images_box {
+	display: none;
+	position: absolute; left: 128px;
+	margin-top: -14px;
+}
+
+.pim_element_tool_image {
+	cursor: pointer;
+	margin-left: 5px;
+}
+
+.pim_element_annotation_value_box, .pim_element_value_box {
+	width: 165px;
+	overflow: hidden;
+}
+
+.pim_element_value_box {
+	margin-top: 2px;
+}
+
+.pim_element_annotation_value {
+	border-bottom: 1px dotted black;
+}
+
+.pim_element_value {
+	font-weight: bold;
+}
+
+.pim_element_annotation_value_textbox, .pim_element_value_textbox {
+    -moz-appearance: none;
+    height: 19px;
+    border: none;
+    background-color: #dfcb99;
+    margin: 0px;
+	margin-left: -1px;
+    padding: 0px;
+	width: 156px;
+	border-radius: 2px; -moz-border-radius: 2px; -webkit-border-radius: 2px; -khtml-border-radius: 2px;
+}
+
+.pim_element_annotation_value_textbox {
+    padding-bottom: 1px;
+}
+
+.pim_element_value_textbox {
+    font-weight: bold;
+}
+
+.pim_element_annotation_value, .pim_element_value, .pim_element_annotation_value_textbox, .pim_element_value_textbox {
+	text-align: left;
+	text-shadow: 0 0 0 black, 0 0 0 black;
+}
+
+.pim_element_edited_value_images {
+	width: 8px; height: 19px;
+	margin: 3px 0px 0px 2px;
+}
+
+.pim_element_box .pim_element_edited_value_images {
+	margin-top: 1px;
+}
+
+.pim_element_edited_value_accept_image, .pim_element_edited_value_cancel_image {
+	cursor: pointer;
+}
+
+.pim_element_edited_value_cancel_image {
+	margin-top: 2px;
+}
+
+.pim_element_box .pim_element_edited_value_cancel_image {
+	margin-top: 3px;
+}
+
+.pim_buttons_box {
+	position: relative; top: 15px; left: -10px;
+	margin-bottom: 10px;
+}
+
+.pim_button {
+	cursor: pointer;
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+#pims_tools_images_box {
+	position: fixed; top: 87%; left: 10px;
+	width: 260px; height: 85px;
+	text-align: center;
+	border: 3px #c1d1e0 outset;
+	border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; -khtml-border-radius: 10px;
+}
+
+.microformat_tool_images {
+	position: absolute; left: 0px;
+	width: 100%;
+	text-align: center;
+}
+
+#microformat_tool_image_1 {
+	top: 10px;
+}
+
+#pims_saved_label {
+	position: relative; top: -4px; left: 8px;
+	font-size: 11px;
+}
+
+.pims_saved {
+	color: darkgreen;
+}
+
+.pims_saving {
+	color: darkblue;
+	margin-left: 3px;
+}
+
+.pims_unsaved {
+	color: darkred;
+	margin-left: 3px;
+}
+
+#microformat_tool_image_2 {
+	top: 32px;
+}
+
+#microformat_tool_image_3 {
+	top: 54px;
+}
+
+.function_pic:hover {
+	cursor: pointer;
+}
+
+.pims_pic:hover {
+	cursor: move;
+}
+
+.top {
+	vertical-align: top;
+	margin-top: -1px;
+}
+
+.inline {
+	vertical-align: bottom;
+}
+
+.left {
+	margin-left: 2px;
+}
+
+.leftleft {
+	margin-left: 10px;
+}

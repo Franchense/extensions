@@ -1,0 +1,28 @@
+#microformats_panel {
+	height: 663px;
+}
+
+treechildren {
+	cursor: move;
+}
+
+#microformats_tree {
+	height: 415px;
+	overflow: auto;
+	margin-top: 10px;
+}
+
+#microformats_panel #microformats_tree {
+	margin-top: 5px;
+}
+
+#microformats_tree_header {
+	font-weight: bold;
+	font-style: italic;
+	padding-left: 85px;
+}
+
+#microformats_tree_body {
+	padding: 10px 0px;
+	background: #c1d1e0;
+}

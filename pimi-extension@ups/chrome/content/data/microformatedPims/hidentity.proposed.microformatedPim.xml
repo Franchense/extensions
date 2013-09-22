@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pimgroup groupname="hIdentity" category="">
+	<pim name="Honorific name" value="" description="My honorific name" annotationtype="microformat" microformatclass="hcard" microformatsubclass="n" microformatsubclassattribute="honorific-name"/>
+	<pim name="Given name" value="" description="My given name" annotationtype="microformat" microformatclass="hcard" microformatsubclass="n" microformatsubclassattribute="given-name"/>
+	<pim name="Family name" value="" description="My family name" annotationtype="microformat" microformatclass="hcard" microformatsubclass="n" microformatsubclassattribute="family-name"/>
+	<pim name="Nickname" value="" description="My nickname" annotationtype="microformat" microformatclass="hcard" microformatsubclass="nickname" microformatsubclassattribute="nickname"/>
+</pimgroup>

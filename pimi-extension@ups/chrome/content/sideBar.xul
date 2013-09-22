@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="css/general.css" type="text/css"?>
+<?xml-stylesheet href="css/log.css" type="text/css"?>
+<?xml-stylesheet href="css/pims.css" type="text/css"?>
+<?xml-stylesheet href="css/annotations.css" type="text/css"?>
+<?xml-stylesheet href="css/microformats.css" type="text/css"?>
+<!DOCTYPE overlay>
+
+<window xmlns:html="http://www.w3.org/1999/xhtml"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+		id="pimi_sidebar"
+        title="Pi@ff general window"
+		onload="initSideBar();"
+		onunload="exitSideBar();"
+	    ondragenter="doDragEnterSideBar(event);"
+	    ondragover="doDragOverSideBar(event);">
+
+	<script type="application/x-javascript" src="config/config.js"></script>
+	<script type="application/x-javascript" src="config/language.js"></script>
+	<script type="application/x-javascript" src="config/style.js"></script>
+
+	<script type="application/x-javascript" src="model/tool.utilityTool.js"></script>
+
+	<script type="application/x-javascript" src="model/interface.generalInterfaceTool.js"></script>
+	<script type="application/x-javascript" src="model/interface.generalSpaceInterfaceTool.js"></script>
+	<script type="application/x-javascript" src="model/interface.personalSpaceInterfaceTool.js"></script>
+	<script type="application/x-javascript" src="model/interface.pimsInterfaceTool.js"></script>
+	<script type="application/x-javascript" src="model/interface.pimsInterfaceTool.js"></script>
+	<script type="application/x-javascript" src="model/interface.microformatsInterfaceTool.js"></script>
+	<script type="application/x-javascript" src="model/interface.annotationsInterfaceTool.js"></script>
+
+	<script type="application/x-javascript" src="model/manager.pimsManager.js"></script>
+	<script type="application/x-javascript" src="model/manager.annotationsManager.js"></script>
+	<script type="application/x-javascript" src="model/manager.microformatsManager.js"></script>
+	<script type="application/x-javascript" src="model/manager.userManager.js"></script>
+	<script type="application/x-javascript" src="model/manager.webPagesManager.js"></script>
+	<script type="application/x-javascript" src="model/manager.completionsManager.js"></script>
+	<script type="application/x-javascript" src="model/manager.configurationManager.js"></script>
+
+	<script type="application/x-javascript" src="model/user.user.js"></script>
+	<script type="application/x-javascript" src="model/user.generalSpace.js"></script>
+	<script type="application/x-javascript" src="model/user.personalSpace.js"></script>
+
+	<script type="application/x-javascript" src="general.xul.js"></script>
+
+	<script type="application/x-javascript" src="model/microformat.microformat.js"></script>
+	<script type="application/x-javascript" src="model/microformat.microformatGroup.js"></script>
+	<script type="application/x-javascript" src="model/microformat.atomicMicroformat.js"></script>
+
+	<script type="application/x-javascript" src="model/pim.category.js"></script>
+	<script type="application/x-javascript" src="model/pim.pim.js"></script>
+	<script type="application/x-javascript" src="model/pim.pimElement.js"></script>
+
+	<script type="application/x-javascript" src="model/web.webPage.js"></script>
+	<script type="application/x-javascript" src="model/web.webPageElement.js"></script>
+
+	<script type="application/x-javascript" src="model/annotation.atomicAnnotationTag.js"></script>
+	<script type="application/x-javascript" src="model/annotation.elementAnnotation.js"></script>
+	<script type="application/x-javascript" src="model/annotation.webPageAnnotation.js"></script>
+
+	<script type="application/x-javascript">
+	  <![CDATA[
+			function initSideBar() {
+				initGeneral();
+			}
+			function exitSideBar() {
+				exitGeneral();
+			}
+			function doDragEnterSideBar(event) {
+				//doDragEnterFormGroup(event);
+			}
+			function doDragOverSideBar(event) {
+				//doDragOverFormGroup(event);
+			}
+	  ]]>
+	</script>
+</window>
