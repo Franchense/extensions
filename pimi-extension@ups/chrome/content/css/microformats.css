@@ -1,5 +1,5 @@
 #microformats_panel {
-	height: 663px;
+	height: 695px;
 }
 
 treechildren {
@@ -7,7 +7,7 @@ treechildren {
 }
 
 #microformats_tree {
-	height: 415px;
+	height: 480px;
 	overflow: auto;
 	margin-top: 10px;
 }

@@ -60,23 +60,43 @@ PersonalSpace.prototype = {
 		return !this.isDirty();
 	},
 	setBusy: function() {
-		this.setSavingPims(true);
+		this.savingPims = true;
 		this.pimsManager.updateSavedLabelView();
 	},
 	setIdle: function() {
-		this.setSavingPims(false);
+		this.savingPims = false;
 		this.pimsManager.updateSavedLabelView();
 	},
 	setDirty: function() {
-		this.setUnsavedPims(true);
+		this.unsavedPims = true;
 		this.pimsManager.updateSavedLabelView();
 		if(this.autoSave)
 			this.save();
 	},
 	setClean: function() {
-		this.setUnsavedPims(false);
+		this.unsavedPims = false;
 		this.pimsManager.updateSavedLabelView();
 	},
+	setAutoSaveMode: function(activateAutoSave) {
+		this.autoSave = activateAutoSave;
+		if(activateAutoSave && this.isDirty())
+			this.save();
+		this.pimsManager.updateSavedLabelView();
+	},
+    showPimiHome: function() {
+        this.webPageJsContext.location = serverAddress + piaffHomeUrl;
+    },
+    showPersonalPims: function() {
+        this.webPageJsContext.location = serverAddress + pimisShowUrl +
+        								 '?userName=' + this.user.getUserName() +
+        								 '&sessionToken=' + this.user.getSessionToken();
+    },
+    showMicroformatsFiles: function() {
+        this.webPageJsContext.location = serverAddress + microformatsGetUrl;
+    },
+    showAnnotationsFiles: function() {
+        this.webPageJsContext.location = serverAddress + annotationsGetUrl;
+    },
 	load: function() {
 		var obj = this;
 		var params = 'userName=' + this.user.getUserName() +
@@ -168,18 +188,6 @@ PersonalSpace.prototype = {
     deletePanelsView: function() {
         this.interfaceTool.deletePanelsView(this);
     },
-	showPimiHome: function() {
-		this.interfaceTool.showPimiHome();
-	},
-	showPersonalPims: function() {
-		this.interfaceTool.showPersonalPims(this.user.getName(),this.user.getSessionToken());
-	},
-	showMicroformatsFiles: function() {
-		this.interfaceTool.showMicroformatsFiles();
-	},
-	showAnnotationsFiles: function() {
-		this.interfaceTool.showAnnotationsFiles();
-	},
 	selectSideBarMenu: function(panelName){
 		this.interfaceTool.selectPanel(panelName);
 	},

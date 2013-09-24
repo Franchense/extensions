@@ -197,18 +197,6 @@ XulInterfaceTool.prototype = {
         return this.personalSpaceInterfaceTool.getPimChangeValueContextMenuView();
     },
     /** General methods */
-    showPimiHome: function() {
-        this.personalSpaceInterfaceTool.showPimiHome();
-    },
-    showPersonalPims: function(userName,sessionToken) {
-        this.personalSpaceInterfaceTool.showPersonalPims(userName,sessionToken);
-    },
-    showMicroformatsFiles: function() {
-        this.personalSpaceInterfaceTool.showMicroformatsFiles();
-    },
-    showAnnotationsFiles: function() {
-        this.personalSpaceInterfaceTool.showAnnotationsFiles();
-    },
     selectPanel: function(panelName){
         this.personalSpaceInterfaceTool.selectPanel(panelName);
     },

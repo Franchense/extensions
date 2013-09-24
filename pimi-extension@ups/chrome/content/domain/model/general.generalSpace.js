@@ -213,7 +213,8 @@ GeneralSpace.prototype = {
 	},
 	sendAccountConnexionRequest: function(userName, password) {
 		var obj = this;
-		var params = 'userName=' + userName + '&password=' + password;
+		var params = 'userName=' + userName +
+					 '&password=' + password;
 		var url = serverAddress + usersConnectUrl;
 		var response = 'aucune';
 		var httpRequest = this.utilityTool.initHttpRequest();
