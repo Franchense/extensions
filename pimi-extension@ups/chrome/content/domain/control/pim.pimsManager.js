@@ -202,6 +202,18 @@ PimsManager.prototype = {
         }
         return null;
 	},
+	changePimCategory: function(pim,newCategory) {
+		var oldCategory = pim.getCategory();
+		if(newCategory.getId() != oldCategory.getId()) {
+			pim.setCategory(newCategory);
+			this.setDirty();
+			newCategory.updatePanelView();
+			oldCategory.updatePanelView();
+		}
+	},
+	changeDraggedPimCategory: function(newCategory) {
+		this.changePimCategory(this.draggedPim,newCategory);
+	},
 	deletePim: function(pim) {
 		this.pims.remove(pim);
 		this.deletedPims.push(pim);

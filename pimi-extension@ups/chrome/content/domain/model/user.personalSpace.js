@@ -44,6 +44,9 @@ PersonalSpace.prototype = {
     	this.createView();*/
 		/*****************************************************************/
 	},
+    exit: function() {
+    	this.generalSpace.exit();
+	},
 	getUniqueRandomId: function(intLength) {
 		return this.generalSpace.getUniqueRandomId(intLength);
 	},
@@ -84,30 +87,26 @@ PersonalSpace.prototype = {
 		this.pimsManager.updateSavedLabelView();
 	},
     showPimiHome: function() {
-        this.webPageJsContext.location = serverAddress + piaffHomeUrl;
+        this.generalSpace.showPimiHome();
+    },
+    showMicroformatsFiles: function() {
+        this.generalSpace.showMicroformatsFiles();
+    },
+    showAnnotationsFiles: function() {
+        this.generalSpace.showAnnotationsFiles();
     },
     showPersonalPims: function() {
         this.webPageJsContext.location = serverAddress + pimisShowUrl +
         								 '?userName=' + this.user.getUserName() +
         								 '&sessionToken=' + this.user.getSessionToken();
     },
-    showMicroformatsFiles: function() {
-        this.webPageJsContext.location = serverAddress + microformatsGetUrl;
-    },
-    showAnnotationsFiles: function() {
-        this.webPageJsContext.location = serverAddress + annotationsGetUrl;
-    },
 	load: function() {
 		var obj = this;
+		var url = serverAddress + pimisGetUrl;
 		var params = 'userName=' + this.user.getUserName() +
 					 '&sessionToken=' + this.user.getSessionToken();
-		var url = serverAddress + pimisGetUrl;
+		var httpRequest = this.utilityTool.createPostHttpRequest(url,params);
 		var response = 'aucune';
-		var httpRequest = this.utilityTool.initHttpRequest();
-		httpRequest.open('POST', url, true);
-		httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		httpRequest.setRequestHeader("Content-length", params.length);
-		httpRequest.setRequestHeader("Connection", "close");
 		httpRequest.onreadystatechange = function() {
 			if (httpRequest.readyState == 4) {
 				if (httpRequest.status == 200) {
@@ -146,16 +145,12 @@ PersonalSpace.prototype = {
 				this.setBusy();
 				var obj = this;
 				var pimsXmlDoc = this.export();
+				var url = serverAddress + pimisUpdateUrl;
 				var params = 'userName=' + this.user.getUserName() +
 						 	 '&sessionToken=' + this.user.getSessionToken() +
 						 	 '&xmldoc=' + this.utilityTool.XMLToString(pimsXmlDoc);
-				var url = serverAddress + pimisUpdateUrl;
+				var httpRequest = this.utilityTool.createPostHttpRequest(url,params);
 				var response = 'aucune';
-				var httpRequest = this.utilityTool.initHttpRequest();
-				httpRequest.open('POST', url, true);
-				httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-				httpRequest.setRequestHeader("Content-length", params.length);
-				httpRequest.setRequestHeader("Connection", "close");
 				httpRequest.onreadystatechange = function() { 
 					if (httpRequest.readyState == 4) {
 						if (httpRequest.status == 200) {

@@ -113,13 +113,11 @@ PersonalSpaceXulInterfaceTool.prototype = {
         var tabsBar = this.getMenuBarElementView(MENU_ID);
         
         var logOutMenuItem = this.getMenuBarItemView(menuBarLogOutLabel);
-        logOutMenuItem.onclick = function(event) { personalSpace.getGeneralSpace().exit(); };
+        logOutMenuItem.onclick = function(event) { personalSpace.exit(); };
         tabsBar.appendChild(logOutMenuItem);
-        
         var pimsMenuItem = this.getMenuBarItemView(menuBarPimsLabel);
         pimsMenuItem.onclick = function(event) { personalSpace.selectSideBarMenu('pims'); };
         tabsBar.appendChild(pimsMenuItem);
-        
         if(personalSpace.getUser().isUser()) {
             var microformatsMenuItem = this.getMenuBarItemView(menuBarMicroformatsLabel);
             microformatsMenuItem.onclick = function(event) { personalSpace.selectSideBarMenu('microformats'); };
@@ -130,9 +128,9 @@ PersonalSpaceXulInterfaceTool.prototype = {
             annotationsMenuItem.onclick = function(event) { personalSpace.selectSideBarMenu('annotations'); };
             tabsBar.appendChild(annotationsMenuItem);
         }
-
         //tabsBar.ondragenter = function(event) { personalSpace.doDragEnterMicroformatBasedPim(event); };
         //tabsBar.ondragover = function(event) { personalSpace.doDragOverMicroformatBasedPim(event); };
+
         return tabsBar;
     },
     /*-----------------------------------------------
@@ -165,18 +163,14 @@ PersonalSpaceXulInterfaceTool.prototype = {
         var generalPopupSet = this.getMenuPopupsetView();
         var generalMenuPopup = this.getMenuPopupView('general_contextual_menu');
 
-        var addEmptyPimGeneralContextualMenuItem = this.getMenuItemView('images/user.png',menuContextualAddEmptyPimLabel);
-        addEmptyPimGeneralContextualMenuItem.onclick = function(event) { personalSpace.getPimsManager().addPimToSelectedCategoryDialog(); };
-        generalMenuPopup.appendChild(addEmptyPimGeneralContextualMenuItem);
-
-        generalMenuPopup.appendChild(this.getMicroformatedPimsMenuView(personalSpace));
-
         var addPimCategoryGeneralContextualMenuItem = this.getMenuItemView('images/whitePlus.png',menuContextualAddPimCategoryLabel);
         addPimCategoryGeneralContextualMenuItem.onclick = function(event) { personalSpace.getPimsManager().addCategoryDialog(''); };
         generalMenuPopup.appendChild(addPimCategoryGeneralContextualMenuItem);
-        
+        var addEmptyPimGeneralContextualMenuItem = this.getMenuItemView('images/user.png',menuContextualAddEmptyPimLabel);
+        addEmptyPimGeneralContextualMenuItem.onclick = function(event) { personalSpace.getPimsManager().addPimToSelectedCategoryDialog(); };
+        generalMenuPopup.appendChild(addEmptyPimGeneralContextualMenuItem);
+        generalMenuPopup.appendChild(this.getMicroformatedPimsMenuView(personalSpace));
         generalMenuPopup.appendChild(this.getMenuSeparatorView());
-
         generalMenuPopup.appendChild(this.getShowPimsElementsIconicMenusMenuView(personalSpace));
         
         /*generalMenuPopup.appendChild(this.getMenuSeparatorView());
@@ -188,17 +182,17 @@ PersonalSpaceXulInterfaceTool.prototype = {
         generalMenuPopup.appendChild(this.getMenuSeparatorView());
 
         generalMenuPopup.appendChild(this.getCompletionWithPimsMenuView(personalSpace));
-        
         generalMenuPopup.appendChild(this.getDetectedSemanticMenuView(personalSpace));
-        
         generalMenuPopup.appendChild(this.getPimsSavingMenuView(personalSpace));
-        
+
         generalMenuPopup.appendChild(this.getMenuSeparatorView());
         
+        var seeHomePageGeneralContextualMenuItem = this.getMenuItemView('images/home.png',menuContextualSeePimiHomePageLabel);
+        seeHomePageGeneralContextualMenuItem.onclick = function(event) { personalSpace.showPimiHome(); };
+        generalMenuPopup.appendChild(seeHomePageGeneralContextualMenuItem);
         var seeAnnotationsFilesGeneralContextualMenuItem = this.getMenuItemView('images/annotations.png',menuContextualSeeAnnotationsFilesLabel);
         seeAnnotationsFilesGeneralContextualMenuItem.onclick = function(event) { personalSpace.showAnnotationsFiles(); };
         generalMenuPopup.appendChild(seeAnnotationsFilesGeneralContextualMenuItem);
-
         var seeMicroformatsFilesGeneralContextualMenuItem = this.getMenuItemView('images/microformats.png',menuContextualSeeMicroformatsFilesLabel);
         seeMicroformatsFilesGeneralContextualMenuItem.onclick = function(event) { personalSpace.showMicroformatsFiles(); };
         generalMenuPopup.appendChild(seeMicroformatsFilesGeneralContextualMenuItem);
@@ -208,18 +202,15 @@ PersonalSpaceXulInterfaceTool.prototype = {
         var seePimsFileGeneralContextualMenuItem = this.getMenuItemView('images/pims.png',menuContextualSeePimsFileLabel);
         seePimsFileGeneralContextualMenuItem.onclick = function(event) { personalSpace.showPersonalPims(); };
         generalMenuPopup.appendChild(seePimsFileGeneralContextualMenuItem);
-
         var savePimsGeneralContextualMenuItem = this.getMenuItemView('images/floppy.png',menuContextualSavePimsLabel);
         savePimsGeneralContextualMenuItem.onclick = function(event) { personalSpace.save(); };
         generalMenuPopup.appendChild(savePimsGeneralContextualMenuItem);
-
         generalMenuPopup.appendChild(this.getPimsAutoSaveMenuView(personalSpace));
 
         generalMenuPopup.appendChild(this.getMenuSeparatorView());
         
         var logOutGeneralContextualMenuItem = this.getMenuItemView('images/exit.png',menuContextualLogOutLabel);
-        //logOutGeneralContextualMenuItem.onclick = function(event) { disconnectPimiUser(); };
-        logOutGeneralContextualMenuItem.onclick = function(event) { alert('Coming soon!'); };
+        logOutGeneralContextualMenuItem.onclick = function(event) { personalSpace.exit(); };
         generalMenuPopup.appendChild(logOutGeneralContextualMenuItem);
 
         generalPopupSet.appendChild(generalMenuPopup);
@@ -232,7 +223,6 @@ PersonalSpaceXulInterfaceTool.prototype = {
         var addEmptyPimPimsGeneralTabContextualMenuItem = this.getMenuItemView('images/user.png',menuContextualAddEmptyPimLabel);
         addEmptyPimPimsGeneralTabContextualMenuItem.onclick = function(event) { personalSpace.getPimsManager().addPimToSelectedCategoryDialog(); };
         generalMenuPopup.appendChild(addEmptyPimPimsGeneralTabContextualMenuItem);
-
         generalMenuPopup.appendChild(this.getMicroformatedPimsMenuView(personalSpace));
 
         generalPopupSet.appendChild(generalMenuPopup);
@@ -245,11 +235,11 @@ PersonalSpaceXulInterfaceTool.prototype = {
         var addEmptyPimPimsTabsContextualMenuItem = this.getMenuItemView('images/user.png',menuContextualAddEmptyPimLabel);
         addEmptyPimPimsTabsContextualMenuItem.onclick = function(event) { personalSpace.getPimsManager().addPimToSelectedCategoryDialog(); };
         generalMenuPopup.appendChild(addEmptyPimPimsTabsContextualMenuItem);
-
         generalMenuPopup.appendChild(this.getMicroformatedPimsMenuView(personalSpace));
-        generalMenuPopup.appendChild(this.getMenuSeparatorView());
-        generalMenuPopup.appendChild(this.getDeleteCategoryMenuView(personalSpace));
 
+        generalMenuPopup.appendChild(this.getMenuSeparatorView());
+
+        generalMenuPopup.appendChild(this.getDeleteCategoryMenuView(personalSpace));
         var renameCategoryPimsTabsContextualMenuItem = this.getMenuItemView('images/rename.png',menuContextualRenameCategoryLabel);
         renameCategoryPimsTabsContextualMenuItem.onclick = function(event) { personalSpace.getPimsManager().renameSelectedCategoryDialog(); };
         generalMenuPopup.appendChild(renameCategoryPimsTabsContextualMenuItem);
@@ -270,11 +260,9 @@ PersonalSpaceXulInterfaceTool.prototype = {
         var deletePimPimsContextualMenuItem = this.getMenuItemView('images/greenMinus.png',menuContextualDeletePimLabel);
         deletePimPimsContextualMenuItem.onclick = function(event) { personalSpace.getPimsManager().deleteSelectedPimDialog(); };
         generalMenuPopup.appendChild(deletePimPimsContextualMenuItem);
-
         var renamePimPimsContextualMenuItem = this.getMenuItemView('images/rename2.png',menuContextualRenamePimLabel);
         renamePimPimsContextualMenuItem.onclick = function(event) { personalSpace.getPimsManager().editNameSelectedPimDialog(); };
         generalMenuPopup.appendChild(renamePimPimsContextualMenuItem);
-
         var showHidePimPimsContextualMenuItem = this.getMenuItemView('images/showHide.png',menuContextualShowHidePimLabel);
         showHidePimPimsContextualMenuItem.onclick = function(event) { personalSpace.getPimsManager().toggleSelectedPim(); };
         generalMenuPopup.appendChild(showHidePimPimsContextualMenuItem);
@@ -296,11 +284,9 @@ PersonalSpaceXulInterfaceTool.prototype = {
         var deletePimElementPimsElementsContextualMenuItem = this.getMenuItemView('images/delete_big.png',menuContextualDeletePimElementLabel);
         deletePimElementPimsElementsContextualMenuItem.onclick = function(event) { personalSpace.getPimsManager().deleteSelectedPimElementDialog(); };
         generalMenuPopup.appendChild(deletePimElementPimsElementsContextualMenuItem);
-
         var editAnnotationValuePimsElementsContextualMenuItem = this.getMenuItemView('images/editType_big.png',menuContextualEditAnnotationValuePimElementLabel);
         editAnnotationValuePimsElementsContextualMenuItem.onclick = function(event) { personalSpace.getPimsManager().editAnnotationValueSelectedPimElementDialog(); };
         generalMenuPopup.appendChild(editAnnotationValuePimsElementsContextualMenuItem);
-
         var editValuePimsElementsContextualMenuItem = this.getMenuItemView('images/editValue_big.png',menuContextualEditValuePimElementLabel);
         editValuePimsElementsContextualMenuItem.onclick = function(event) { personalSpace.getPimsManager().editValueSelectedElementPim(); };
         generalMenuPopup.appendChild(editValuePimsElementsContextualMenuItem);
@@ -327,7 +313,6 @@ PersonalSpaceXulInterfaceTool.prototype = {
         var pasteSemanticDetectionContextualMenuItem = this.getMenuItemView('images/clipboard.png',menuContextualPasteSemanticDetectionLabel);
         //pasteSemanticDetectionContextualMenuItem.onclick = function(event) { pasteInputDetectedSemantic(); };
         generalMenuPopup.appendChild(pasteSemanticDetectionContextualMenuItem);
-
         var saveNewValueContextualMenuItem = this.getMenuItemView('images/save.png',menuContextualSaveNewValueLabel);
         //saveNewValueContextualMenuItem.onclick = function(event) { saveNewValue(); };
         generalMenuPopup.appendChild(saveNewValueContextualMenuItem);
@@ -343,7 +328,6 @@ PersonalSpaceXulInterfaceTool.prototype = {
         var deleteCategoryMovingPimsTabsContextualMenuItem = this.getMenuItemView('images/trash.png',menuContextualDeleteCategoryMovingPimsLabel);
         deleteCategoryMovingPimsTabsContextualMenuItem.onclick = function(event) { personalSpace.getPimsManager().deleteSelectedCategoryDeletingPimsDialog(); };
         deleteCategoryMenuPopup.appendChild(deleteCategoryMovingPimsTabsContextualMenuItem);
-
         var deleteCategoryDeletingPimsTabsContextualMenuItem = this.getMenuItemView('images/move.png',menuContextualDeleteCategoryDeletingPimsLabel);
         deleteCategoryDeletingPimsTabsContextualMenuItem.onclick = function(event) { personalSpace.getPimsManager().deleteSelectedCategoryMovingPimsDialog(); };
         deleteCategoryMenuPopup.appendChild(deleteCategoryDeletingPimsTabsContextualMenuItem);
@@ -358,7 +342,6 @@ PersonalSpaceXulInterfaceTool.prototype = {
         /*var addShortHcalendarPimGeneralContextualMenuItem = this.getMenuItemView('images/microformats.png',menuContextualAddShortHcalendarPimLabel);
         //addShortHcalendarPimGeneralContextualMenuItem.onclick = function(event) { addFormatedPimToCategory('hcalendar'); };
         addFormatedPimsMenuPopup.appendChild(addShortHcalendarPimGeneralContextualMenuItem);
-        
         var addShortHcardPimGeneralContextualMenuItem = this.getMenuItemView('images/microformats.png',menuContextualAddShortHcardPimLabel);
         //addShortHcardPimGeneralContextualMenuItem.onclick = function(event) { addFormatedPimToCategory('hcard'); };
         addFormatedPimsMenuPopup.appendChild(addShortHcardPimGeneralContextualMenuItem);
@@ -368,7 +351,6 @@ PersonalSpaceXulInterfaceTool.prototype = {
         var addHcalendarPimGeneralContextualMenuItem = this.getMenuItemView('images/microformats.png',menuContextualAddHcalendarPimLabel);
         addHcalendarPimGeneralContextualMenuItem.onclick = function(event) { personalSpace.getPimsManager().addProposedFormatedPimToSelectedCategory('hcalendar',true); };
         addFormatedPimsMenuPopup.appendChild(addHcalendarPimGeneralContextualMenuItem);
-
         var addHcardPimGeneralContextualMenuItem = this.getMenuItemView('images/microformats.png',menuContextualAddHcardPimLabel);
         addHcardPimGeneralContextualMenuItem.onclick = function(event) { personalSpace.getPimsManager().addHCardProposedFormatedPimsToSelectedCategory(); };
         addFormatedPimsMenuPopup.appendChild(addHcardPimGeneralContextualMenuItem);
@@ -376,7 +358,6 @@ PersonalSpaceXulInterfaceTool.prototype = {
         /*var addHreviewPimGeneralContextualMenuItem = this.getMenuItemView('images/microformats.png',menuContextualAddHreviewPimLabel);
         addHreviewPimGeneralContextualMenuItem.onclick = function(event) { personalSpace.getPimsManager().addProposedFormatedPimToSelectedCategory('hreview',true); };
         addFormatedPimsMenuPopup.appendChild(addHreviewPimGeneralContextualMenuItem);
-        
         var addXoxoPimGeneralContextualMenuItem = this.getMenuItemView('images/microformats.png',menuContextualAddXoxoPimLabel);
         addXoxoPimGeneralContextualMenuItem.onclick = function(event) { personalSpace.getPimsManager().addProposedFormatedPimToSelectedCategory('xoxo',true); };
         addFormatedPimsMenuPopup.appendChild(addXoxoPimGeneralContextualMenuItem);*/
@@ -394,7 +375,6 @@ PersonalSpaceXulInterfaceTool.prototype = {
         var addHcontactPimGeneralContextualMenuItem = this.getMenuItemView('images/microformats.png',menuContextualAddHcontactPimLabel);
         addHcontactPimGeneralContextualMenuItem.onclick = function(event) { personalSpace.getPimsManager().addProposedFormatedPimToSelectedCategory('hcontact',true); };
         addFormatedPimsMenuPopup.appendChild(addHcontactPimGeneralContextualMenuItem);
-
         var addHidentityPimGeneralContextualMenuItem = this.getMenuItemView('images/microformats.png',menuContextualAddHidentityPimLabel);
         addHidentityPimGeneralContextualMenuItem.onclick = function(event) { personalSpace.getPimsManager().addProposedFormatedPimToSelectedCategory('hidentity',true); };
         addFormatedPimsMenuPopup.appendChild(addHidentityPimGeneralContextualMenuItem);
@@ -416,7 +396,6 @@ PersonalSpaceXulInterfaceTool.prototype = {
         hidePimsElementsIconicMenusMenuItem.onclick = function(event) { personalSpace.getPimsManager().setShowPimsElementsIconicMenus(false);
                                                                         personalSpace.getPimsManager().updateView(); };
         showPimsElementsIconicMenusMenuPopup.appendChild(hidePimsElementsIconicMenusMenuItem);
-        
         var showPimsElementsIconicMenusMenuItem = this.getMenuItemView('images/enable.png',menuContextualShowPimsElementsIconicMenusLabel);
         showPimsElementsIconicMenusMenuItem.onclick = function(event) { personalSpace.getPimsManager().setShowPimsElementsIconicMenus(true);
                                                                         personalSpace.getPimsManager().updateView(); };
@@ -433,7 +412,6 @@ PersonalSpaceXulInterfaceTool.prototype = {
         //disableCompletionWithPimsGeneralContextualMenuItem.onclick = function(event) { disablePimsCompletion(); };
         disableCompletionWithPimsGeneralContextualMenuItem.onclick = function(event) { alert('Coming soon!'); };
         completionWithPimsMenuPopup.appendChild(disableCompletionWithPimsGeneralContextualMenuItem);
-        
         var enableCompletionWithPimsGeneralContextualMenuItem = this.getMenuItemView('images/enable.png',menuContextualEnableCompletionWithPimsLabel);
         //enableCompletionWithPimsGeneralContextualMenuItem.onclick = function(event) { enablePimsCompletion(); };
         enableCompletionWithPimsGeneralContextualMenuItem.onclick = function(event) { alert('Coming soon!'); };
@@ -450,7 +428,6 @@ PersonalSpaceXulInterfaceTool.prototype = {
         //hideDetectedInputsSemanticGeneralContextualMenuItem.onclick = function(event) { disableInputsSemanticDetection(); };
         hideDetectedInputsSemanticGeneralContextualMenuItem.onclick = function(event) { alert('Coming soon!'); };
         detectedSemanticMenuPopup.appendChild(hideDetectedInputsSemanticGeneralContextualMenuItem);
-        
         var showDetectedInputsSemanticGeneralContextualMenuItem = this.getMenuItemView('images/enable.png',menuContextualShowDetectedInputsSemanticLabel);
         //showDetectedInputsSemanticGeneralContextualMenuItem.onclick = function(event) { enableInputsSemanticDetection(); };
         showDetectedInputsSemanticGeneralContextualMenuItem.onclick = function(event) { alert('Coming soon!'); };
@@ -467,7 +444,6 @@ PersonalSpaceXulInterfaceTool.prototype = {
         //disableFormGroupsSaveGeneralContextualMenuItem.onclick = function(event) { disableFormGroupsSave(); };
         disableFormGroupsSaveGeneralContextualMenuItem.onclick = function(event) { alert('Coming soon!'); };
         addFormatedPimsMenuPopup.appendChild(disableFormGroupsSaveGeneralContextualMenuItem);
-
         var enableFormGroupsSaveGeneralContextualMenuItem = this.getMenuItemView('images/enable.png',menuContextualEnableFormGroupsSaveLabel);
         //enableFormGroupsSaveGeneralContextualMenuItem.onclick = function(event) { enableFormGroupsSave(); };
         enableFormGroupsSaveGeneralContextualMenuItem.onclick = function(event) { alert('Coming soon!'); };
@@ -483,7 +459,6 @@ PersonalSpaceXulInterfaceTool.prototype = {
         var disablePimsAutoSaveGeneralContextualMenuItem = this.getMenuItemView('images/disable.png',menuContextualDisablePimsAutoSaveLabel);
         disablePimsAutoSaveGeneralContextualMenuItem.onclick = function(event) { personalSpace.setAutoSaveMode(false); };
         autoSavePimsMenuPopup.appendChild(disablePimsAutoSaveGeneralContextualMenuItem);
-
         var enablePimsAutoSaveGeneralContextualMenuItem = this.getMenuItemView('images/enable.png',menuContextualEnablePimsAutoSaveLabel);
         enablePimsAutoSaveGeneralContextualMenuItem.onclick = function(event) { personalSpace.setAutoSaveMode(true); };
         autoSavePimsMenuPopup.appendChild(enablePimsAutoSaveGeneralContextualMenuItem);

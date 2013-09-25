@@ -30,6 +30,10 @@ var proposedFormatedPimsNameSuffix = '.proposed' + formatedPimsNameSuffix;
 var emptyPimXmlFilePath = dataDirectoryPath + pimsDirectoryPath + 'pimsEmpty.xml';
 var configXmlFilePath = configDirectoryPath + 'config.xml';
 
+/** Local settings */
+var regularUserTypeName = 'user';
+var annotatorUserTypeName = 'annotator';
+
 /** Logical settings */
 var parseFormIntervalTimer = 2000;
 var formGroupPrefix = 'formGroup';

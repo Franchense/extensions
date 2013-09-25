@@ -110,12 +110,8 @@ PimCategory.prototype = {
 		event = event || window.event;
 		var categoryTab = event.currentTarget;
 		if(this.pimsManager.getDraggedPim() != null) {
-			var oldCategory = this.pimsManager.getDraggedPim().getCategory();
-			this.pimsManager.getDraggedPim().setCategory(this);
+			this.pimsManager.changeDraggedPimCategory(this);
 			this.pimsManager.setDraggedPim(null);
-			this.pimsManager.setDirty();
-			this.updatePanelView();
-			oldCategory.updatePanelView();
 		}
 		else if(this.pimsManager.getDraggedEmptyPimPicture() != null) {
 			this.pimsManager.doDrop(event);

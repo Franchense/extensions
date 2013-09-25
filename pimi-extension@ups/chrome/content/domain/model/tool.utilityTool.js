@@ -121,6 +121,19 @@ UtilityTool.prototype = {
 		}
 		return httpRequest;
 	},
+	createPostHttpRequest: function(url,params) {
+		var httpRequest = this.initHttpRequest();
+		httpRequest.open('POST', url, true);
+		httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		httpRequest.setRequestHeader("Content-length", params.length);
+		httpRequest.setRequestHeader("Connection", "close");
+		return httpRequest;
+	},
+	createGetHttpRequest: function(url,params) {
+		var httpRequest = this.initHttpRequest();
+		httpRequest.open('GET', url + '?' + params, true);
+		return httpRequest;
+	},
 	createXmlDoc: function() {
 		if(window.XMLHttpRequest) {
 			return new XMLHttpRequest();

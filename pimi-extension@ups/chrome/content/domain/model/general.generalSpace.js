@@ -30,11 +30,11 @@ GeneralSpace.prototype = {
 		/*************************************************************************************
 								AUTOLOG --> TO DELETE
 		*************************************************************************************/
-		this.enableDisableConnexionButton(true);
+		//this.enableDisableAccountPanelButtons(false);
     	/************** TO WORK ONLINE **************/
-		this.sendAccountConnexionRequest('Jean', 'jean');
+		//this.sendAccountConnexionRequest('Jean', 'jean');
     	/************** TO WORK IN LOCAL **************/
-		//this.connectPimiUser('Jean','16cdf1v6f5d4vdf');
+		//this.connectPimiUser('Jean','16cdf1v6f5d4vdf', regularUserTypeName);
 		/*************************************************************************************
 		*************************************************************************************/
 	},
@@ -54,19 +54,18 @@ GeneralSpace.prototype = {
 	clearObjectsIdArray: function() {
 		this.objectsIdArray = new Array();
 	},
+    showPimiHome: function() {
+        this.webPageJsContext.location = serverAddress + piaffHomeUrl;
+    },
+    showMicroformatsFiles: function() {
+        this.webPageJsContext.location = serverAddress + microformatsGetUrl;
+    },
+    showAnnotationsFiles: function() {
+        this.webPageJsContext.location = serverAddress + annotationsGetUrl;
+    },
 	/*-----------------------------------------------
 		Account methods
 	-----------------------------------------------*/
-	keyPressCreate: function(event) {
-		//event = event || window.event;
-		/*switch (event.keyCode) {
-			//Enter
-			case 13:
-				this.createPimiAccount();
-				break;
-			default: break;
-		}*/
-	},
 	keyPressConnect: function(event) {
 		event = event || window.event;
 		switch (event.keyCode) {
@@ -77,8 +76,40 @@ GeneralSpace.prototype = {
 			default: break;
 		}
 	},
+	keyPressCreate: function(event) {
+		event = event || window.event;
+		switch (event.keyCode) {
+			//Enter
+			case 13:
+				this.createPimiAccount();
+				break;
+			default: break;
+		}
+	},
+	connectPimiAccount: function() {
+		var userNameInput = this.pluginContext.getElementById(ACCOUNT_SIGNIN_USERNAME_FIELD_ID);
+		var userNameStr = userNameInput.value;
+		var userPasswordInput = this.pluginContext.getElementById(ACCOUNT_SIGNIN_PASSWORD_FIELD_ID);
+		var userPasswordStr = userPasswordInput.value;
+		var verif = /^\s*$/.exec(userNameStr);
+		if(verif != null) {
+			alert(userAccountConnexionMissingUserNameWarningMessage);
+			userNameInput.value = "";
+			userNameInput.focus();
+			return;
+		}
+		verif = /^\s*$/.exec(userPasswordStr);
+		if(verif != null) {
+			alert(userAccountConnexionMissingPasswordWarningMessage);
+			userPasswordInput.value = "";
+			userPasswordInput.focus();
+			return;
+		}
+		this.enableDisableAccountPanelButtons(false);
+		this.sendAccountConnexionRequest(userNameStr, userPasswordStr);
+	},
 	createPimiAccount: function() {
-		/*var userEmailAddressInput = this.pluginContext.getElementById('account_creation_email');
+		var userEmailAddressInput = this.pluginContext.getElementById('account_creation_email');
 		var userEmailAddressStr = userEmailAddressInput.value;
 		var userNameInput = this.pluginContext.getElementById('account_creation_user_name');
 		var userNameStr = userNameInput.value;
@@ -136,92 +167,19 @@ GeneralSpace.prototype = {
 			userPasswordRepeatedInput.focus();
 			return;
 		}
-		this.pluginContext.getElementById('account_creation_create_button').setAttribute('disabled', 'true');
+		this.enableDisableAccountPanelButtons(false);
 		userEmailAddressStr = userEmailAddressStr.replace(/&/g, '');
 		userNameStr = userNameStr.replace(/&/g, '');
 		userPasswordStr = userPasswordStr.replace(/&/g, '');
-		sendAccountCreationRequest(userEmailAddressStr, userNameStr, userPasswordStr);*/
-	},
-	sendAccountCreationRequest: function(emailAddress, name, password) {
-		/*var params = 'emailAddress=' + emailAddress + '&userName=' + name + '&password=' + password;
-		var url = serverAddress + usersCreateUrl;
-		var response = 'aucune';
-		var httpRequest = this.utilityTool.initHttpRequest();
-		httpRequest.open('POST', url, true);
-		httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		httpRequest.setRequestHeader("Content-length", params.length);
-		httpRequest.setRequestHeader("Connection", "close");
-		httpRequest.onreadystatechange = function() {
-			if (httpRequest.readyState == 4) {
-				if (httpRequest.status == 200) {
-					response = httpRequest.responseText;
-					var serverAccept = parseInt(response.substring((response.indexOf('[') + 1), response.indexOf(']')));
-					var serverResponse = response.substring(response.indexOf(']') + 1);
-					if(serverAccept == 0) {
-						alert(serverResponse);
-						switchToPimiAccountCreation();
-						this.pluginContext.getElementById('account_connexion_user_name').value = name;
-						this.pluginContext.getElementById('account_connexion_password').value = password;
-						alert(userAccountCreationResultMessage);
-					}
-					else {
-						alert(serverResponse);
-						this.pluginContext.getElementById('account_creation_create_button').setAttribute('disabled', 'false');
-					}
-				}
-				else {
-					alert(userAccountCreationErrorMessage);
-					this.pluginContext.getElementById('account_creation_create_button').setAttribute('disabled', 'false');
-				}
-			}
-		};
-		httpRequest.send(params);*/
-	},
-	switchToPimiAccountCreation: function() {
-		var accountConnexionForm = this.pluginContext.getElementById(ACCOUNT_SIGNIN_PANEL_ID);
-		var accountCreationForm = this.pluginContext.getElementById(ACCOUNT_SIGNUP_PANEL_ID);
-		if(accountConnexionForm.style.display == 'none') {
-			accountConnexionForm.style.display = 'block';
-			accountCreationForm.style.display = 'none';
-		}
-		else {
-			accountConnexionForm.style.display = 'none';
-			accountCreationForm.style.display = 'block';
-		}
-	},
-	connectPimiAccount: function() {
-		var userNameInput = this.pluginContext.getElementById(ACCOUNT_SIGNIN_USERNAME_FIELD_ID);
-		var userNameStr = userNameInput.value;
-		var userPasswordInput = this.pluginContext.getElementById(ACCOUNT_SIGNIN_PASSWORD_FIELD_ID);
-		var userPasswordStr = userPasswordInput.value;
-		var verif = /^\s*$/.exec(userNameStr);
-		if(verif != null) {
-			alert(userAccountConnexionMissingUserNameWarningMessage);
-			userNameInput.value = "";
-			userNameInput.focus();
-			return;
-		}
-		verif = /^\s*$/.exec(userPasswordStr);
-		if(verif != null) {
-			alert(userAccountConnexionMissingPasswordWarningMessage);
-			userPasswordInput.value = "";
-			userPasswordInput.focus();
-			return;
-		}
-		this.enableDisableConnexionButton(true);
-		this.sendAccountConnexionRequest(userNameStr, userPasswordStr);
+		this.sendAccountCreationRequest(userEmailAddressStr, userNameStr, userPasswordStr);
 	},
 	sendAccountConnexionRequest: function(userName, password) {
 		var obj = this;
+		var url = serverAddress + usersConnectUrl;
 		var params = 'userName=' + userName +
 					 '&password=' + password;
-		var url = serverAddress + usersConnectUrl;
+		var httpRequest = this.utilityTool.createPostHttpRequest(url,params);
 		var response = 'aucune';
-		var httpRequest = this.utilityTool.initHttpRequest();
-		httpRequest.open('POST', url, true);
-		httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		httpRequest.setRequestHeader("Content-length", params.length);
-		httpRequest.setRequestHeader("Connection", "close");
 		httpRequest.onreadystatechange = function() {
 			if (httpRequest.readyState == 4) {
 				if (httpRequest.status == 200) {
@@ -229,25 +187,67 @@ GeneralSpace.prototype = {
 					var serverAccept = parseInt(response.substring((response.indexOf('[') + 1), response.indexOf(']')));
 					var serverResponse = response.substring(response.indexOf(']') + 1);
 					if(serverAccept == 0) {
-						var sessionToken = response.substring((response.indexOf('{') + 1), response.indexOf('}'));
-						obj.connectPimiUser(userName, sessionToken);
+						var userData = response.substring((response.indexOf('{') + 1), response.indexOf('}'));
+						var separatorIndex = userData.indexOf('//');
+						var sessionToken = userData.substring(0, separatorIndex);
+						var annotator = userData.substring(separatorIndex + 2);
+						if(annotator == '0')
+							userType = regularUserTypeName;
+						else
+							userType = annotatorUserTypeName;
+						obj.connectPimiUser(userName, sessionToken, userType);
 					}
 					else {
 						alert(serverResponse);
-						this.enableDisableConnexionButton(false);
+						this.enableDisableAccountPanelButtons(true);
 					}
 				}
 				else {
 					alert(userAccountConnexionErrorMessage);
-					this.enableDisableConnexionButton(false);
+					this.enableDisableAccountPanelButtons(true);
 				}
 			}
 		};
 		httpRequest.send(params);
 	},
-	connectPimiUser: function(userName, sessionToken) {
+	sendAccountCreationRequest: function(emailAddress, name, password) {
+		var obj = this;
+		var url = serverAddress + usersCreateUrl;
+		var params = 'emailAddress=' + emailAddress +
+					 '&userName=' + name +
+					 '&password=' + password;
+		var httpRequest = this.utilityTool.createPostHttpRequest(url,params);
+		var response = 'aucune';
+		httpRequest.onreadystatechange = function() {
+			if (httpRequest.readyState == 4) {
+				if (httpRequest.status == 200) {
+					response = httpRequest.responseText;
+					var serverAccept = parseInt(response.substring((response.indexOf('[') + 1),
+																	response.indexOf(']')));
+					var serverResponse = response.substring(response.indexOf(']') + 1);
+					if(serverAccept == 0) {
+						alert(serverResponse);
+						obj.switchAccountPanels();
+						obj.pluginContext.getElementById('account_connexion_user_name').value = name;
+						obj.pluginContext.getElementById('account_connexion_password').value = password;
+						alert(userAccountCreationResultMessage);
+					}
+					else {
+						alert(serverResponse);
+						obj.pluginContext.getElementById('account_creation_create_button').setAttribute('disabled', 'false');
+					}
+				}
+				else {
+					alert(userAccountCreationErrorMessage);
+					obj.pluginContext.getElementById('account_creation_create_button').setAttribute('disabled', 'false');
+				}
+			}
+		};
+		httpRequest.send(params);
+	},
+	connectPimiUser: function(userName, sessionToken, userType) {
 		var user = new User(this.getUniqueRandomId(20),
-							'user',
+							userType,
 							userName,
 							sessionToken);
 		var personalSpace = new PersonalSpace(this.getUniqueRandomId(20),
@@ -286,6 +286,7 @@ GeneralSpace.prototype = {
 							obj.showHideAccountPanel(true);
 							obj.setUserConnected(false);
 							obj.setPersonalSpace(null);
+							obj.enableDisableAccountPanelButtons(true);
 						}
 						else {
 							alert(serverResponse);
@@ -311,8 +312,11 @@ GeneralSpace.prototype = {
 	showHideAccountPanel: function(show){
 		this.interfaceTool.showHideAccountPanel(show);
 	},
-	enableDisableConnexionButton: function(enable){
-		this.interfaceTool.enableDisableConnexionButton(enable);
+	switchAccountPanels: function() {
+		this.interfaceTool.switchAccountPanels(this);
+	},
+	enableDisableAccountPanelButtons: function(enable){
+		this.interfaceTool.enableDisableAccountPanelButtons(enable);
 	},
 	/*-----------------------------------------------
 		Getters & Setters

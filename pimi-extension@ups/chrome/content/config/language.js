@@ -24,6 +24,7 @@ var menuContextualDisablePimsAutoSaveLabel = 'Manual';
 var menuContextualEnablePimsAutoSaveLabel = 'Automatic';
 var menuContextualSavePimsLabel = 'Save your Pims';
 var menuContextualSeePimsFileLabel = 'See your Pims file';
+var menuContextualSeePimiHomePageLabel = 'See Pimi project home page';
 var menuContextualSeeAnnotationsFilesLabel = 'See the annotations files';
 var menuContextualSeeMicroformatsFilesLabel = 'See the Microformats files';
 var menuContextualAddEmptyPimLabel = 'Add empty Pim';

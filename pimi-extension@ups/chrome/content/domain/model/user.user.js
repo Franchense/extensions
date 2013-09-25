@@ -20,10 +20,10 @@ User.prototype = {
 		General methods
 	-----------------------------------------------*/
 	isUser: function() {
-		return (this.type == 'user');
+		return (this.type == regularUserTypeName);
 	},
 	isAnnotator: function() {
-		return (this.type == 'annotator');
+		return (this.type == annotatorUserTypeName);
 	},
 	/*-----------------------------------------------
 		Getters & Setters

@@ -141,6 +141,7 @@ XulInterfaceTool.prototype = {
     /*-----------------------------------------------
         GeneralSpaceInterfaceTool methods
     -----------------------------------------------*/
+    /** Creation methods */
     createAccountPanelsView: function(generalSpace) {
         this.generalSpaceInterfaceTool.createAccountPanelsView(generalSpace);
     },
@@ -156,11 +157,15 @@ XulInterfaceTool.prototype = {
     getAccountConnexionPanel: function(generalSpace) {
         return this.generalSpaceInterfaceTool.getAccountConnexionPanel(generalSpace);
     },
+    /** Account panel methods */
     showHideAccountPanel: function(show){
         this.generalSpaceInterfaceTool.showHideAccountPanel(show);
     },
-    enableDisableConnexionButton: function(enable){
-        this.generalSpaceInterfaceTool.enableDisableConnexionButton(enable);
+    switchAccountPanels: function(generalSpace) {
+        this.generalSpaceInterfaceTool.switchAccountPanels(generalSpace);
+    },
+    enableDisableAccountPanelButtons: function(enable){
+        this.generalSpaceInterfaceTool.enableDisableAccountPanelButtons(enable);
     },
     /*-----------------------------------------------
         PersonalSpaceInterfaceTool methods
