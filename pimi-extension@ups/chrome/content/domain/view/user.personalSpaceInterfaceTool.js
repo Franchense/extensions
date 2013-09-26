@@ -54,6 +54,9 @@ PersonalSpaceXulInterfaceTool.prototype = {
                 annotationsPanel.hidden = false;
         }
     },
+    addLogConsoleMessage: function(message) {
+        
+    },
     /*-----------------------------------------------
         Init methods
     -----------------------------------------------*/
@@ -170,7 +173,6 @@ PersonalSpaceXulInterfaceTool.prototype = {
         addEmptyPimGeneralContextualMenuItem.onclick = function(event) { personalSpace.getPimsManager().addPimToSelectedCategoryDialog(); };
         generalMenuPopup.appendChild(addEmptyPimGeneralContextualMenuItem);
         generalMenuPopup.appendChild(this.getMicroformatedPimsMenuView(personalSpace));
-        generalMenuPopup.appendChild(this.getMenuSeparatorView());
         generalMenuPopup.appendChild(this.getShowPimsElementsIconicMenusMenuView(personalSpace));
         
         /*generalMenuPopup.appendChild(this.getMenuSeparatorView());

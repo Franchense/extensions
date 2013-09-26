@@ -187,7 +187,7 @@ PersonalSpace.prototype = {
 		this.interfaceTool.selectPanel(panelName);
 	},
 	addLogConsoleMessage: function(message) {
-		
+		this.interfaceTool.addLogConsoleMessage(message);
 	},
 	/*-----------------------------------------------
 		Export methods

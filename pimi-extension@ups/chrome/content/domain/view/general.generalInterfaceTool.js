@@ -145,18 +145,6 @@ XulInterfaceTool.prototype = {
     createAccountPanelsView: function(generalSpace) {
         this.generalSpaceInterfaceTool.createAccountPanelsView(generalSpace);
     },
-    getAccountPanels: function(generalSpace) {
-        return this.generalSpaceInterfaceTool.getAccountPanels(generalSpace);
-    },
-    getAccountPanelsTitle: function(generalSpace) {
-        return this.generalSpaceInterfaceTool.getAccountPanelsTitle(generalSpace);
-    },
-    getAccountCreationPanel: function(generalSpace) {
-        return this.generalSpaceInterfaceTool.getAccountCreationPanel(generalSpace);
-    },
-    getAccountConnexionPanel: function(generalSpace) {
-        return this.generalSpaceInterfaceTool.getAccountConnexionPanel(generalSpace);
-    },
     /** Account panel methods */
     showHideAccountPanel: function(show){
         this.generalSpaceInterfaceTool.showHideAccountPanel(show);
@@ -167,43 +155,45 @@ XulInterfaceTool.prototype = {
     enableDisableAccountPanelButtons: function(enable){
         this.generalSpaceInterfaceTool.enableDisableAccountPanelButtons(enable);
     },
+    connectPimiAccount: function(generalSpace) {
+        this.generalSpaceInterfaceTool.connectPimiAccount(generalSpace);
+    },
+    createPimiAccount: function(generalSpace) {
+        this.generalSpaceInterfaceTool.createPimiAccount(generalSpace);
+    },
+    connexionUserNameFieldFocus: function(emptyField) {
+        this.generalSpaceInterfaceTool.connexionUserNameFieldFocus(emptyField);
+    },
+    connexionPasswordFieldFocus: function(emptyField) {
+        this.generalSpaceInterfaceTool.connexionPasswordFieldFocus(emptyField);
+    },
+    creationEmailAddressFieldFocus: function(emptyField) {
+        this.generalSpaceInterfaceTool.creationEmailAddressFieldFocus(emptyField);
+    },
+    creationUserNameFieldFocus: function(emptyField) {
+        this.generalSpaceInterfaceTool.creationUserNameFieldFocus(emptyField);
+    },
+    creationPasswordFieldFocus: function(emptyField) {
+        this.generalSpaceInterfaceTool.creationPasswordFieldFocus(emptyField);
+    },
+    creationRepeatPasswordFieldFocus: function(emptyField) {
+        this.generalSpaceInterfaceTool.creationRepeatPasswordFieldFocus(emptyField);
+    },
     /*-----------------------------------------------
         PersonalSpaceInterfaceTool methods
     -----------------------------------------------*/
-    /** Init methods */
+    /** Panels methods */
     createPanelsView: function(personalSpace) {
         this.personalSpaceInterfaceTool.createPanelsView(personalSpace);
     },
-    /** Exit methods */
     deletePanelsView: function(personalSpace) {
         this.personalSpaceInterfaceTool.deletePanelsView(personalSpace);
     },
-    /** Menu view methods */
-    getMenuBarView: function() {
-        return this.personalSpaceInterfaceTool.getMenuBarView();
-    },
-    /** Contextual menus view methods */
-    getGeneralContextMenuView: function() {
-        return this.personalSpaceInterfaceTool.getGeneralContextMenuView();
-    },
-    getGeneralCategoryTabContextMenuView: function() {
-        return this.personalSpaceInterfaceTool.getGeneralCategoryTabContextMenuView();
-    },
-    getCategoriesTabsContextMenuView: function() {
-        return this.personalSpaceInterfaceTool.getCategoriesTabsContextMenuView();
-    },
-    getPimsContextMenuView: function() {
-        return this.personalSpaceInterfaceTool.getPimsContextMenuView();
-    },
-    getMicroformatsBasedPimsContextMenuView: function() {
-        return this.personalSpaceInterfaceTool.getMicroformatsBasedPimsContextMenuView();
-    },
-    getPimChangeValueContextMenuView: function() {
-        return this.personalSpaceInterfaceTool.getPimChangeValueContextMenuView();
-    },
-    /** General methods */
     selectPanel: function(panelName){
         this.personalSpaceInterfaceTool.selectPanel(panelName);
+    },
+    addLogConsoleMessage: function(message) {
+        this.personalSpaceInterfaceTool.addLogConsoleMessage(message);
     },
     /*-----------------------------------------------
         PimsInterfaceTool methods

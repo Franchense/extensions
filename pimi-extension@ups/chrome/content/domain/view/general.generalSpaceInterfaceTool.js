@@ -40,7 +40,7 @@ GeneralSpaceXulInterfaceTool.prototype = {
     createAccountPanelsView: function(generalSpace) {
         var rootElement = this.pluginContext.getElementById('pimi_sidebar');
         rootElement.appendChild(this.getAccountPanels(generalSpace));
-        this.userNameFocus();
+        this.connexionUserNameFieldFocus(false);
     },
     getAccountPanels: function(generalSpace) {
         var accountPanel = this.getPluginElement('vbox',['id','flex'],
@@ -86,7 +86,7 @@ GeneralSpaceXulInterfaceTool.prototype = {
         accountCreationRow = this.getPluginElement('row',[],[]);
         var accountSigninButton = this.getPluginElement('button',['id','class','flex','label','tooltiptext'],
                                                                  [ACCOUNT_SIGNIN_BUTTON_ID,'form_button','1',panelAccountConnexionConnectButtonLabel,panelAccountConnexionConnectButtonTooltipText]);
-        accountSigninButton.onclick = function(event) { generalSpace.connectPimiAccount(); };
+        accountSigninButton.onclick = function(event) { obj.connectPimiAccount(generalSpace); };
         accountCreationRow.appendChild(accountSigninButton);
         accountCreationRows.appendChild(accountCreationRow);
         accountCreationRow = this.getPluginElement('row',[],[]);
@@ -142,7 +142,7 @@ GeneralSpaceXulInterfaceTool.prototype = {
         accountConnexionRow = this.getPluginElement('row',[],[]);
         var accountSignupButton = this.getPluginElement('button',['id','class','flex','label','tooltiptext'],
                                                                  [ACCOUNT_SIGNUP_BUTTON_ID,'form_button','1',panelAccountCreationCreateButtonLabel,panelAccountCreationCreateButtonTooltipText]);
-        accountSignupButton.onclick = function(event) { generalSpace.createPimiAccount(); };
+        accountSignupButton.onclick = function(event) { obj.createPimiAccount(generalSpace); };
         accountConnexionRow.appendChild(accountSignupButton);
         accountConnexionRows.appendChild(accountConnexionRow);
         accountConnexionRow = this.getPluginElement('row',[],[]);
@@ -169,21 +169,13 @@ GeneralSpaceXulInterfaceTool.prototype = {
         if(accountConnexionForm != null) {
             accountCreationForm = this.getAccountCreationPanel(generalSpace);
             accountConnexionForm.parentNode.replaceChild(accountCreationForm, accountConnexionForm);
-            this.userEmailAddressFocus();
+            this.creationEmailAddressFieldFocus(false);
         }
         else if(accountCreationForm != null) {
             accountConnexionForm = this.getAccountConnexionPanel(generalSpace);
             accountCreationForm.parentNode.replaceChild(accountConnexionForm, accountCreationForm);
-            this.userNameFocus();
+            this.connexionUserNameFieldFocus(false);
         }
-    },
-    userEmailAddressFocus: function() {
-        var userEmailAddressInput = this.pluginContext.getElementById('account_creation_email');
-        userEmailAddressInput.focus();
-    },
-    userNameFocus: function() {
-        var userNameInput = this.pluginContext.getElementById(ACCOUNT_SIGNIN_USERNAME_FIELD_ID);
-        userNameInput.focus();
     },
     enableDisableAccountPanelButtons: function(enable){
         var disabledValue = 'true';
@@ -201,6 +193,46 @@ GeneralSpaceXulInterfaceTool.prototype = {
             sigUpButton.setAttribute('disabled', disabledValue);
             sigUpSwitchButton.setAttribute('disabled', disabledValue);
         }
+    },
+    connectPimiAccount: function(generalSpace) {
+        var userNameInput = this.pluginContext.getElementById(ACCOUNT_SIGNIN_USERNAME_FIELD_ID);
+        var userPasswordInput = this.pluginContext.getElementById(ACCOUNT_SIGNIN_PASSWORD_FIELD_ID);
+        generalSpace.connectPimiAccount(userNameInput.value,
+                                        userPasswordInput.value);
+    },
+    createPimiAccount: function(generalSpace) {
+        var userEmailAddressInput = this.pluginContext.getElementById('account_creation_email');
+        var userNameInput = this.pluginContext.getElementById('account_creation_user_name');
+        var userPasswordInput = this.pluginContext.getElementById('account_creation_password');
+        var userPasswordRepeatedInput = this.pluginContext.getElementById('account_creation_repeat_password');
+        generalSpace.createPimiAccount(userEmailAddressInput.value,
+                                       userNameInput.value,
+                                       userPasswordInput.value,
+                                       userPasswordRepeatedInput.value);
+    },
+    inputFocus: function(inputId, emptyField) {
+        var input = this.pluginContext.getElementById(inputId);
+        if(emptyField)
+            input.value = '';
+        input.focus();
+    },
+    connexionUserNameFieldFocus: function(emptyField) {
+        this.inputFocus(ACCOUNT_SIGNIN_USERNAME_FIELD_ID, emptyField);
+    },
+    connexionPasswordFieldFocus: function(emptyField) {
+        this.inputFocus(ACCOUNT_SIGNIN_PASSWORD_FIELD_ID, emptyField);
+    },
+    creationEmailAddressFieldFocus: function(emptyField) {
+        this.inputFocus('account_creation_email', emptyField);
+    },
+    creationUserNameFieldFocus: function(emptyField) {
+        this.inputFocus('account_creation_user_name', emptyField);
+    },
+    creationPasswordFieldFocus: function(emptyField) {
+        this.inputFocus('account_creation_password', emptyField);
+    },
+    creationRepeatPasswordFieldFocus: function(emptyField) {
+        this.inputFocus('account_creation_repeat_password', emptyField);
     },
     /*-----------------------------------------------
         Getters & Setters

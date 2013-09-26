@@ -1,5 +1,6 @@
 /** Server urls */
-var serverAddress = 'http://piaff-test.winckler.webfactional.com';
+var serverApplication = 'piaff-test';
+var serverAddress = 'http://' + serverApplication + '.winckler.webfactional.com';
 var rootPrefix = '/';
 var piaffHomeUrl = rootPrefix;
 var pimisGetUrl = rootPrefix + 'pims/get.php';

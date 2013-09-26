@@ -71,7 +71,7 @@ GeneralSpace.prototype = {
 		switch (event.keyCode) {
 			//Enter
 			case 13:
-				this.connectPimiAccount();
+				this.interfaceTool.connectPimiAccount(this);
 				break;
 			default: break;
 		}
@@ -81,96 +81,77 @@ GeneralSpace.prototype = {
 		switch (event.keyCode) {
 			//Enter
 			case 13:
-				this.createPimiAccount();
+				this.interfaceTool.createPimiAccount(this);
 				break;
 			default: break;
 		}
 	},
-	connectPimiAccount: function() {
-		var userNameInput = this.pluginContext.getElementById(ACCOUNT_SIGNIN_USERNAME_FIELD_ID);
-		var userNameStr = userNameInput.value;
-		var userPasswordInput = this.pluginContext.getElementById(ACCOUNT_SIGNIN_PASSWORD_FIELD_ID);
-		var userPasswordStr = userPasswordInput.value;
-		var verif = /^\s*$/.exec(userNameStr);
+	connectPimiAccount: function(userName,userPassword) {
+		var verif = /^\s*$/.exec(userName);
 		if(verif != null) {
 			alert(userAccountConnexionMissingUserNameWarningMessage);
-			userNameInput.value = "";
-			userNameInput.focus();
+			this.interfaceTool.connexionUserNameFieldFocus(true);
 			return;
 		}
-		verif = /^\s*$/.exec(userPasswordStr);
+		verif = /^\s*$/.exec(userPassword);
 		if(verif != null) {
 			alert(userAccountConnexionMissingPasswordWarningMessage);
-			userPasswordInput.value = "";
-			userPasswordInput.focus();
+			this.interfaceTool.connexionPasswordFieldFocus(true);
 			return;
 		}
 		this.enableDisableAccountPanelButtons(false);
-		this.sendAccountConnexionRequest(userNameStr, userPasswordStr);
+		this.sendAccountConnexionRequest(userName, userPassword);
 	},
-	createPimiAccount: function() {
-		var userEmailAddressInput = this.pluginContext.getElementById('account_creation_email');
-		var userEmailAddressStr = userEmailAddressInput.value;
-		var userNameInput = this.pluginContext.getElementById('account_creation_user_name');
-		var userNameStr = userNameInput.value;
-		var userPasswordInput = this.pluginContext.getElementById('account_creation_password');
-		var userPasswordStr = userPasswordInput.value;
-		var userPasswordRepeatedInput = this.pluginContext.getElementById('account_creation_repeat_password');
-		var userPasswordRepeatedStr = userPasswordRepeatedInput.value;
-		var verif = /^\s*$/.exec(userEmailAddressStr);
+	createPimiAccount: function(userEmailAddress,userName,userPassword,userRepeatedPassword) {
+		var verif = /^\s*$/.exec(userEmailAddress);
 		if(verif != null) {
 			alert(userAccountCreationMissingEmailAddressWarningMessage);
-			userEmailAddressInput.value = '';
-			userEmailAddressInput.focus();
+			this.interfaceTool.creationEmailAddressFieldFocus(true);
 			return;
 		}
-		verif = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i.exec(userEmailAddressStr);
+		verif = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i.exec(userEmailAddress);
 		if(verif == null) {
 			alert(userAccountCreationInvalidEmailAddressWarningMessage);
-			userEmailAddressInput.focus();
+			this.interfaceTool.creationEmailAddressFieldFocus(false);
 			return;
 		}
-		verif = /^\s*$/.exec(userNameStr);
+		verif = /^\s*$/.exec(userName);
 		if(verif != null) {
 			alert(userAccountCreationMissingUserNameWarningMessage);
-			userNameInput.value = '';
-			userNameInput.focus();
+			this.interfaceTool.creationUserNameFieldFocus(true);
 			return;
 		}
-		if(userNameStr.length < 6) {
+		if(userName.length < 6) {
 			alert(userAccountCreationInvalidUserNameWarningMessage);
-			userNameInput.focus();
+			this.interfaceTool.creationUserNameFieldFocus(false);
 			return;
 		}
-		verif = /^\s*$/.exec(userPasswordStr);
+		verif = /^\s*$/.exec(userPassword);
 		if(verif != null) {
 			alert(userAccountCreationMissingPasswordWarningMessage);
-			userPasswordInput.value = '';
-			userPasswordInput.focus();
+			this.interfaceTool.creationPasswordFieldFocus(true);
 			return;
 		}
-		if(userPasswordStr.length < 6) {
+		if(userPassword.length < 6) {
 			alert(userAccountCreationInvalidPasswordWarningMessage);
-			userPasswordInput.focus();
+			this.interfaceTool.creationPasswordFieldFocus(false);
 			return;
 		}
-		verif = /^\s*$/.exec(userPasswordRepeatedStr);
+		verif = /^\s*$/.exec(userRepeatedPassword);
 		if(verif != null) {
 			alert(userAccountCreationMissingRepeatedPasswordWarningMessage);
-			userPasswordRepeatedInput.value = '';
-			userPasswordRepeatedInput.focus();
+			this.interfaceTool.creationRepeatPasswordFieldFocus(true);
 			return;
 		}
-		if(userPasswordStr != userPasswordRepeatedStr) {
+		if(userPassword != userRepeatedPassword) {
 			alert(userAccountCreationInvalidRepeatedPasswordWarningMessage);
-			userPasswordRepeatedInput.value = '';
-			userPasswordRepeatedInput.focus();
+			this.interfaceTool.creationRepeatPasswordFieldFocus(true);
 			return;
 		}
 		this.enableDisableAccountPanelButtons(false);
-		userEmailAddressStr = userEmailAddressStr.replace(/&/g, '');
-		userNameStr = userNameStr.replace(/&/g, '');
-		userPasswordStr = userPasswordStr.replace(/&/g, '');
+		var userEmailAddressStr = userEmailAddress.replace(/&/g, '');
+		var userNameStr = userName.replace(/&/g, '');
+		var userPasswordStr = userPassword.replace(/&/g, '');
 		this.sendAccountCreationRequest(userEmailAddressStr, userNameStr, userPasswordStr);
 	},
 	sendAccountConnexionRequest: function(userName, password) {
