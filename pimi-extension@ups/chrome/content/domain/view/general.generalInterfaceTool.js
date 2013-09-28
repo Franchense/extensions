@@ -249,8 +249,8 @@ XulInterfaceTool.prototype = {
     getCategoryTabView: function(category) {
         return this.pimsInterfaceTool.getCategoryTabView(category);
     },
-    selectCategory: function(category) {
-        this.pimsInterfaceTool.selectCategory(category);
+    selectCategoryView: function(category) {
+        this.pimsInterfaceTool.selectCategoryView(category);
     },
     /** Pims methods */
     updatePimView: function(pim) {

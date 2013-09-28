@@ -238,14 +238,19 @@ PimsXulInterfaceTool.prototype = {
 			newTab.setAttribute('class','pims_tab');
 			newTab.setAttribute('context','pims_general_tab_contextual_menu');
 		}
-		newTab.onclick = function(event) { if(event.button == 0) category.getPimsManager().selectCategory(category); };
+		newTab.onclick = function(event) {
+			var selectCategoryView = false;
+			if(event.button == 0)
+				selectCategoryView = true;
+			category.getPimsManager().selectCategory(category,selectCategoryView);
+		};
 		newTab.ondragenter = function(event) { category.doDragEnter(event); };
 		newTab.ondragover = function(event) { category.doDragOver(event); };
 		newTab.ondragleave = function(event) { category.doDragLeave(event); };
 		newTab.ondrop = function(event) { category.doDrop(event); };
 		return newTab;
 	},
-	selectCategory: function(category) {
+	selectCategoryView: function(category) {
 		var tabbox = this.pluginContext.getElementById('pims_tabbox');
 		var tab = this.pluginContext.getElementById(category.getId() + '_pims_category_tab');
 		tabbox.selectedTab = tab;

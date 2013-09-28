@@ -107,10 +107,11 @@ PimsManager.prototype = {
         }
         return null;
 	},
-	selectCategory: function(category) {
+	selectCategory: function(category,selectView) {
 		this.unselectAllCategories();
     	category.select();
-		this.selectCategoryView(category);
+    	if(selectView)
+			this.selectCategoryView(category);
 	},
 	unselectAllCategories: function() {
 		for(var i = 0; i < this.categories.length; i++) {
@@ -362,7 +363,7 @@ PimsManager.prototype = {
 		this.interfaceTool.updatePimsSavedLabelView(this);
 	},
 	selectCategoryView: function(category) {
-		this.interfaceTool.selectCategory(category);
+		this.interfaceTool.selectCategoryView(category);
 	},
 	/*-----------------------------------------------
 		Import & Export methods

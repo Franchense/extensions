@@ -79,7 +79,7 @@ PimCategory.prototype = {
 		else if(this.pimsManager.getDraggedFormInput() != null)
 			this.interfaceTool.setColorStyle(event.currentTarget,dragOverCategoryFormInputPimColor);*/
 		if(selectTab)
-			this.pimsManager.selectCategory(this);
+			this.pimsManager.selectCategory(this,true);
 	},
 	doDragOver: function(event) {
 		event = event || window.event;
