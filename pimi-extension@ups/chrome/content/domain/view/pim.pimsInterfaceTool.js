@@ -9,10 +9,11 @@ PimsXulInterfaceTool
 /*
 * Constructor
 **/
-function PimsXulInterfaceTool(pluginContext,webPageDomContext,webPageJsContext) {
+function PimsXulInterfaceTool(pluginContext,webPageDomContext,webPageJsContext,contextualMenusInterfaceTool) {
     this.pluginContext = pluginContext;
     this.webPageDomContext = webPageDomContext;
     this.webPageJsContext = webPageJsContext;
+    this.contextualMenusInterfaceTool = contextualMenusInterfaceTool;
     this.utilInterfaceTool = new UtilInterfaceTool(pluginContext,webPageDomContext,webPageJsContext);
 }
 /*-----------------------------------------------
@@ -40,19 +41,19 @@ PimsXulInterfaceTool.prototype = {
 	},
 	getPimsPanelView: function(pimsManager) {
 		var pimsPanel = this.getPluginElement('vbox',['id','flex','context'],
-                                                     [PIMS_PANEL_ID,'1','general_contextual_menu']);
+                                                     [PIMS_PANEL_ID,'1','pims_panel_contextual_menu']);
 		pimsPanel.ondrop = function(event) { pimsManager.doDrop(event); };
-		//pimsPanel.appendChild(this.getPimsSaveCheckboxView(pimsManager));
 		pimsPanel.appendChild(this.getCategoriesTabboxView(pimsManager));
-		pimsPanel.appendChild(this.getPimsPicsView(pimsManager));
+		if(pimsManager.getShowToolPicturesBox())
+			pimsPanel.appendChild(this.getPimsPicsView(pimsManager));
+		pimsPanel.appendChild(this.contextualMenusInterfaceTool.getPimsPanelContextMenuView(pimsManager));
+        pimsPanel.appendChild(this.contextualMenusInterfaceTool.getGeneralCategoryTabContextMenuView(pimsManager));
+        pimsPanel.appendChild(this.contextualMenusInterfaceTool.getCategoriesTabsContextMenuView(pimsManager));
+        pimsPanel.appendChild(this.contextualMenusInterfaceTool.getPimsContextMenuView(pimsManager));
+        pimsPanel.appendChild(this.contextualMenusInterfaceTool.getPimsElementsContextMenuView(pimsManager));
+        //pimsPanel.appendChild(this.contextualMenusInterfaceTool.getPimChangeValueContextMenuView(pimsManager));
+
 		return pimsPanel;
-	},
-	getPimsSaveCheckboxView: function(pimsManager) {
-		var pimsSaveCheckbox = this.getPluginElement('checkbox',['id','checked','label','tooltiptext'],
-                                                     			['pims_form_groups_save_checkbox','false',pimsFormGroupsSaveCheckboxLabel,pimsFormGroupsSaveCheckboxTooltipText]);
-		//pimsSaveCheckbox.onclick = function(event) { enableDisableFormGroupsSave(); };
-        pimsSaveCheckbox.onclick = function(event) { alert('Coming soon!'); };
-		return pimsSaveCheckbox;
 	},
 	getCategoriesTabboxView: function(pimsManager) {
 		var categoriesTabbox = this.getPluginElement('tabbox',['id','orient'],
@@ -140,6 +141,11 @@ PimsXulInterfaceTool.prototype = {
 		pimsPicsThirdGroupBoxThirdImage.ondragend = function(event) { pimsManager.doDragEndMicroformatPicture(event); };
 		pimsPicsThirdGroupBox.appendChild(pimsPicsThirdGroupBoxThirdImage);
 
+        var rootElement = this.utilInterfaceTool.getRootElement();
+        var pimsPicsBoxHeight = 85;
+        var pimsPicsBoxTop = this.utilInterfaceTool.getSideBarHeight() - pimsPicsBoxHeight - 2;
+        pimsPicsBox.style.top = pimsPicsBoxTop + 'px';
+
 		return pimsPicsBox;
 	},
 	updatePimsSavedLabelView: function(pimsManager) {
@@ -165,6 +171,13 @@ PimsXulInterfaceTool.prototype = {
 		var pimsSaveInformationLabel = this.getPluginElement('label',['id','class','value'],
                                                  	  	   			 ['pims_saved_label',pimsSavedLabelClass,pimsSavedLabelValue]);
 		return pimsSaveInformationLabel;
+	},
+	getPimsSaveCheckboxView: function(pimsManager) {
+		var pimsSaveCheckbox = this.getPluginElement('checkbox',['id','checked','label','tooltiptext'],
+                                                     			['pims_form_groups_save_checkbox','false',pimsFormGroupsSaveCheckboxLabel,pimsFormGroupsSaveCheckboxTooltipText]);
+		//pimsSaveCheckbox.onclick = function(event) { enableDisableFormGroupsSave(); };
+        pimsSaveCheckbox.onclick = function(event) { alert('Coming soon!'); };
+		return pimsSaveCheckbox;
 	},
 	/*-----------------------------------------------
 		Categories methods
@@ -195,11 +208,19 @@ PimsXulInterfaceTool.prototype = {
 	},
 	getCategoryTabPanelView: function(category) {
 		var newPanel = this.getPluginElement('tabpanel',['id','class'],
-                                                       	[category.getId() + '_pims_category_panel','pims_panel']);
+                                                       	[category.getId() + '_pims_category_panel','pims_category_panel']);
 		newPanel.ondragenter = function(event) { event = event || window.event; event.stopPropagation(); event.preventDefault(); };
 		newPanel.ondragover = function(event) { event = event || window.event; event.stopPropagation(); event.preventDefault(); };
 		newPanel.ondragleave = function(event) { event = event || window.event; event.stopPropagation(); event.preventDefault(); };
 		newPanel.ondrop = function(event) { category.doDrop(event); };
+
+        var rootElement = this.utilInterfaceTool.getRootElement();
+        var otherElementsHeight = 30;
+        if(category.getPimsManager().getShowToolPicturesBox())
+        	otherElementsHeight += 85;
+        var panelHeight = this.utilInterfaceTool.getSideBarHeight() - otherElementsHeight;
+        newPanel.style.height = panelHeight + 'px';
+
 		return newPanel;
 	},
 	getCategoryTabView: function(category) {
@@ -211,13 +232,13 @@ PimsXulInterfaceTool.prototype = {
 			newTab.setAttribute('class','pims_tab pims_tab_shift');
 			newTab.setAttribute('context','pims_tabs_contextual_menu');
 			newTab.setAttribute('tooltiptext',categoryTabTooltipText);
-			newTab.ondblclick = function(event) { category.getPimsManager().renameCategoryDialog(category); };
+			newTab.ondblclick = function(event) { if(event.button == 0) category.getPimsManager().renameCategoryDialog(category); };
 		}
 		else {
 			newTab.setAttribute('class','pims_tab');
 			newTab.setAttribute('context','pims_general_tab_contextual_menu');
 		}
-		newTab.onclick = function(event) { category.getPimsManager().selectCategory(category); };
+		newTab.onclick = function(event) { if(event.button == 0) category.getPimsManager().selectCategory(category); };
 		newTab.ondragenter = function(event) { category.doDragEnter(event); };
 		newTab.ondragover = function(event) { category.doDragOver(event); };
 		newTab.ondragleave = function(event) { category.doDragLeave(event); };
@@ -271,7 +292,7 @@ PimsXulInterfaceTool.prototype = {
 			nameLabelValue = pimDefaultNameValue;
 		var nameLabel = this.getPluginElement('label',['class','value'],
                                                  	  ['pim_name',nameLabelValue]);
-		nameLabel.ondblclick = function(event) { pim.editName(event); };
+		nameLabel.ondblclick = function(event) { if(event.button == 0) pim.editName(event); };
 		return nameLabel;
 	},
 	getPimEditedNameView: function(pim) {
@@ -361,7 +382,7 @@ PimsXulInterfaceTool.prototype = {
 	getPimElementView: function(pimElement) {
 		var obj = this;
 		var pimElementView = this.getPluginElement('hbox',['id','context'],
-                                                 	  	  [pimElement.getId(),'pims_elements__contextual_menu']);
+                                                 	  	  [pimElement.getId(),'pims_elements_contextual_menu']);
 		pimElementView.appendChild(this.getPimElementBodyView(pimElement));
 		if(!pimElement.isEdited() && pimElement.getPimsManager().getShowPimsElementsIconicMenus())
 			pimElementView.appendChild(this.getPimElementToolsBoxView(pimElement));
@@ -422,7 +443,7 @@ PimsXulInterfaceTool.prototype = {
 		}
 		else
 			annotationValueBox.appendChild(this.getPimElementAnnotationValueView(pimElement));
-		annotationValueBox.ondblclick = function(event) { pimElement.editAnnotationValue(event); };
+		annotationValueBox.ondblclick = function(event) { if(event.button == 0) pimElement.editAnnotationValue(event); };
 		return annotationValueBox;
 	},
 	getPimElementAnnotationValueView: function(pimElement) {
@@ -454,7 +475,7 @@ PimsXulInterfaceTool.prototype = {
 		}
 		else
 			valueBox.appendChild(this.getPimElementValueView(pimElement));
-		valueBox.ondblclick = function(event) { pimElement.editValue(event); };
+		valueBox.ondblclick = function(event) { if(event.button == 0) pimElement.editValue(event); };
 		return valueBox;
 	},
 	getPimElementValueView: function(pimElement) {
@@ -542,6 +563,12 @@ PimsXulInterfaceTool.prototype = {
 	setWebPageJsContext: function(webPageJsContext) {
 		this.webPageJsContext = webPageJsContext;
 	},
+    getContextualMenusInterfaceTool: function() {
+        return this.contextualMenusInterfaceTool;
+    },
+    setContextualMenusInterfaceTool: function(contextualMenusInterfaceTool) {
+        this.contextualMenusInterfaceTool = contextualMenusInterfaceTool;
+    },
 	getUtilInterfaceTool: function() {
 		return this.utilInterfaceTool;
 	},
@@ -558,10 +585,11 @@ PimsHtmlInterfaceTool
 /*
 * Constructor
 **/
-function PimsHtmlInterfaceTool(pluginContext,webPageDomContext,webPageJsContext) {
+function PimsHtmlInterfaceTool(pluginContext,webPageDomContext,webPageJsContext,contextualMenusInterfaceTool) {
     this.pluginContext = pluginContext;
     this.webPageDomContext = webPageDomContext;
     this.webPageJsContext = webPageJsContext;
+    this.contextualMenusInterfaceTool = contextualMenusInterfaceTool;
     this.utilInterfaceTool = new UtilInterfaceTool(pluginContext,webPageDomContext,webPageJsContext);
 }
 /*-----------------------------------------------

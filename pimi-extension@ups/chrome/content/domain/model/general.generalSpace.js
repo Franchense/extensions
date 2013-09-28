@@ -33,6 +33,7 @@ GeneralSpace.prototype = {
 		//this.enableDisableAccountPanelButtons(false);
     	/************** TO WORK ONLINE **************/
 		//this.sendAccountConnexionRequest('Jean', 'jean');
+		//this.sendAccountConnexionRequest('Vincent', 'vins');
     	/************** TO WORK IN LOCAL **************/
 		//this.connectPimiUser('Jean','16cdf1v6f5d4vdf', regularUserTypeName);
 		/*************************************************************************************
@@ -235,7 +236,7 @@ GeneralSpace.prototype = {
 											  'My personal space',
 											  user,
 											  this);
-		this.showHideAccountPanel(false);
+		this.deleteAccountPanel();
 		this.setUserConnected(true);
 		this.setPersonalSpace(personalSpace);
 		personalSpace.init();
@@ -264,9 +265,9 @@ GeneralSpace.prototype = {
 						if(serverAccept == 0) {
 							obj.clearObjectsIdArray();
 							obj.personalSpace.deletePanelsView();
-							obj.showHideAccountPanel(true);
 							obj.setUserConnected(false);
 							obj.setPersonalSpace(null);
+							obj.createView();
 							obj.enableDisableAccountPanelButtons(true);
 						}
 						else {
@@ -290,9 +291,9 @@ GeneralSpace.prototype = {
 	createAccountPanelsView: function() {
 		this.interfaceTool.createAccountPanelsView(this);
 	},
-	showHideAccountPanel: function(show){
-		this.interfaceTool.showHideAccountPanel(show);
-	},
+    deleteAccountPanel: function(){
+        this.interfaceTool.deleteAccountPanel();
+    },
 	switchAccountPanels: function() {
 		this.interfaceTool.switchAccountPanels(this);
 	},

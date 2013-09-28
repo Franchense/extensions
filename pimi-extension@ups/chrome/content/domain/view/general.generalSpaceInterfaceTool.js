@@ -1,6 +1,5 @@
 /** Constants */
 var ACCOUNT_PANEL_ID = 'pimi_home_general_box';
-var ACCOUNT_HOME_PANEL_ID = 'pimi_home_connected';
 var ACCOUNT_SIGNIN_PANEL_ID = 'pimi_home_disconnected';
 var ACCOUNT_SIGNUP_PANEL_ID = 'pimi_home_account_creation';
 var ACCOUNT_SIGNIN_USERNAME_FIELD_ID = 'account_connexion_user_name';
@@ -38,7 +37,7 @@ GeneralSpaceXulInterfaceTool.prototype = {
         Creation methods
     -----------------------------------------------*/
     createAccountPanelsView: function(generalSpace) {
-        var rootElement = this.pluginContext.getElementById('pimi_sidebar');
+        var rootElement = this.utilInterfaceTool.getRootElement();
         rootElement.appendChild(this.getAccountPanels(generalSpace));
         this.connexionUserNameFieldFocus(false);
     },
@@ -60,6 +59,7 @@ GeneralSpaceXulInterfaceTool.prototype = {
     },
     getAccountConnexionPanel: function(generalSpace) {
         var obj = this;
+        var rootElement = this.utilInterfaceTool.getRootElement();
         var accountCreationGrid = this.getPluginElement('grid',['id'],
                                                                [ACCOUNT_SIGNIN_PANEL_ID]);
         accountCreationGrid.onkeypress = function(event) { generalSpace.keyPressConnect(event); };
@@ -93,13 +93,22 @@ GeneralSpaceXulInterfaceTool.prototype = {
         var accountSigninSwitchButton = this.getPluginElement('button',['id','class','flex','label','tooltiptext'],
                                                                        [ACCOUNT_SIGNIN_SWITCH_BUTTON_ID,'form_button','1',panelAccountConnexionAccountCreationButtonLabel,panelAccountConnexionAccountCreationButtonTooltipText]);
         accountSigninSwitchButton.onclick = function(event) { obj.switchAccountPanels(generalSpace); };
+        var offsetButton = 508;
+        var accountSigninSwitchButtonMarginTop = this.utilInterfaceTool.getSideBarHeight() - offsetButton;
+        accountSigninSwitchButton.style.marginTop = accountSigninSwitchButtonMarginTop + 'px';
         accountCreationRow.appendChild(accountSigninSwitchButton);
         accountCreationRows.appendChild(accountCreationRow);
         accountCreationGrid.appendChild(accountCreationRows);
+
+        var offsetGrid = 564;
+        var accountCreationGridMarginTop = this.utilInterfaceTool.getSideBarHeight() - offsetGrid;
+        accountCreationGrid.style.marginTop = accountCreationGridMarginTop + 'px';
+
         return accountCreationGrid;
     },
     getAccountCreationPanel: function(generalSpace) {
         var obj = this;
+        var rootElement = this.utilInterfaceTool.getRootElement();
         var accountConnexionGrid = this.getPluginElement('grid',['id'],
                                                                 [ACCOUNT_SIGNUP_PANEL_ID]);
         accountConnexionGrid.onkeypress = function(event) { generalSpace.keyPressCreate(event); };
@@ -149,19 +158,25 @@ GeneralSpaceXulInterfaceTool.prototype = {
         var accountSignupSwitchButton = this.getPluginElement('button',['id','class','flex','label','tooltiptext'],
                                                                        [ACCOUNT_SIGNUP_SWITCH_BUTTON_ID,'form_button','1',panelAccountCreationConnexionButtonLabel,panelAccountCreationConnexionButtonTooltipText]);
         accountSignupSwitchButton.onclick = function(event) { obj.switchAccountPanels(generalSpace); };
+        var offsetButton = 584;
+        var accountSignupSwitchButtonMarginTop = this.utilInterfaceTool.getSideBarHeight() - offsetButton;
+        accountSignupSwitchButton.style.marginTop = accountSignupSwitchButtonMarginTop + 'px';
         accountConnexionRow.appendChild(accountSignupSwitchButton);
         accountConnexionRows.appendChild(accountConnexionRow);
         accountConnexionGrid.appendChild(accountConnexionRows);
+
+        var offsetGrid = 604;
+        var accountConnexionGridMarginTop = this.utilInterfaceTool.getSideBarHeight() - offsetGrid;
+        accountConnexionGrid.style.marginTop = accountConnexionGridMarginTop + 'px';
+
         return accountConnexionGrid;
     },
     /*-----------------------------------------------
         Account panel methods
     -----------------------------------------------*/
-    showHideAccountPanel: function(show){
-        var displayValue = 'none';
-        if(show)
-            displayValue = 'block';
-        this.pluginContext.getElementById(ACCOUNT_PANEL_ID).style.display = displayValue;
+    deleteAccountPanel: function(){
+        var accountPanel = this.pluginContext.getElementById(ACCOUNT_PANEL_ID);
+        accountPanel.parentNode.removeChild(accountPanel);
     },
     switchAccountPanels: function(generalSpace) {
         var accountConnexionForm = this.pluginContext.getElementById(ACCOUNT_SIGNIN_PANEL_ID);

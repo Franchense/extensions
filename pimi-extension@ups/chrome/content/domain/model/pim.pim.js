@@ -153,45 +153,6 @@ Pim.prototype = {
 		this.pimsManager.setDraggedPim(null);
 	},
 	/*-----------------------------------------------
-		TO CHANGE
-	-----------------------------------------------*/
-	saveNewValue: function() {
-		// A CHANGER !!!!
-		// Sert pour le copier/coller d'annotation par menu contextuel
-		alert('Classe Pim (pim.pim.js) --> IMPLEMENTATION A CHANGER !');
-		switch(this.pimsManager.getCurrentValueChangeTextbox().getAttribute('class')) {
-			case 'pim_title':
-				//this.saveNewName();
-				break;
-			case 'pim_information_type':
-				//this.saveNewInfoType();
-				break;
-			case 'pim_information_value':
-				//this.saveNewInfoValue();
-				break;
-			default: break;
-		}
-	},
-	saveNewName: function() {
-		var sourceElement = this.pimsManager.getCurrentValueChangeTextbox();
-		var newPimName = sourceElement.value;
-		if(newPimName.isEmpty())
-			newPimName = pimDefaultNameValue;
-		this.setName(newPimName);
-		var newLabel = document.createElement('label');
-		newLabel.setAttribute('value', newPimName);
-		newLabel.setAttribute('id', sourceElement.getAttribute('id'));
-		newLabel.setAttribute('class', sourceElement.getAttribute('class'));
-		newLabel.setAttribute('rel', sourceElement.getAttribute('rel'));
-		sourceElement.parentNode.replaceChild(newLabel, sourceElement);
-
-		var obj = this;
-		newLabel.ondblclick = function(event) { obj.editName(event); };
-
-		newLabel.setAttribute('tooltiptext', pimsNameChangeTootltipText);
-		this.pimsManager.setDirty();
-	},
-	/*-----------------------------------------------
 		Export methods
 	-----------------------------------------------*/
 	import: function(pimXml) {

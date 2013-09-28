@@ -9,6 +9,7 @@ ConfigurationManager
 function ConfigurationManager(personalSpace) {
 	this.autoSave = false;
 	this.showPimsElementsIconicMenus = false;
+	this.showPimsToolPicturesBox = false;
 	this.configXmlDoc = null;
     this.personalSpace = personalSpace;
 	this.pluginContext = personalSpace.getPluginContext();
@@ -41,10 +42,12 @@ ConfigurationManager.prototype = {
 	setDefault: function() {
 		this.autoSave = false;
 		this.showPimsElementsIconicMenus = false;
+		this.showPimsToolPicturesBox = true;
 	},
 	configure: function() {
 		this.personalSpace.setAutoSave(this.autoSave);
 		this.personalSpace.getPimsManager().setShowPimsElementsIconicMenus(this.showPimsElementsIconicMenus);
+		this.personalSpace.getPimsManager().setShowToolPicturesBox(this.showPimsToolPicturesBox);
 	},
 	/*-----------------------------------------------
 		Import & export methods
@@ -59,6 +62,8 @@ ConfigurationManager.prototype = {
 			this.autoSave = save.getAttribute('enabled').toBoolean();
 			var showPimsElementsMenus = configXmlDoc.getElementsByTagName('showPimsElementsIconicMenus')[0];
 			this.showPimsElementsIconicMenus = showPimsElementsMenus.getAttribute('enabled').toBoolean();
+			var showPimsPicturesBox = configXmlDoc.getElementsByTagName('showPimsToolPicturesBox')[0];
+			this.showPimsToolPicturesBox = showPimsPicturesBox.getAttribute('enabled').toBoolean();
 		}
 	},
 	export: function() {
@@ -87,6 +92,12 @@ ConfigurationManager.prototype = {
 	},
 	setShowPimsElementsIconicMenus: function(showPimsElementsIconicMenus) {
 		this.showPimsElementsIconicMenus = showPimsElementsIconicMenus;
+	},
+	getShowPimsToolPicturesBox: function() {
+		return this.showPimsToolPicturesBox;
+	},
+	setShowPimsToolPicturesBox: function(showPimsToolPicturesBox) {
+		this.showPimsToolPicturesBox = showPimsToolPicturesBox;
 	},
 	getConfigXmlDoc: function() {
 		return this.configXmlDoc;

@@ -35,6 +35,7 @@ function PimsManager(personalSpace) {
 	this.draggedEmptyPimPicture = null;
 	this.draggedMicroformatPicture = null;
 	this.showPimsElementsIconicMenus = false;
+	this.showToolPicturesBox = false;
 	this.pluginContext = personalSpace.getPluginContext();
     this.webPageDomContext = personalSpace.getWebPageDomContext();
     this.webPageJsContext = personalSpace.getWebPageJsContext();
@@ -491,6 +492,12 @@ PimsManager.prototype = {
 	},
 	setShowPimsElementsIconicMenus: function(showPimsElementsIconicMenus) {
 		this.showPimsElementsIconicMenus = showPimsElementsIconicMenus;
+	},
+	getShowToolPicturesBox: function() {
+		return this.showToolPicturesBox;
+	},
+	setShowToolPicturesBox: function(showToolPicturesBox) {
+		this.showToolPicturesBox = showToolPicturesBox;
 	},
 	getDraggedEmptyPimPicture: function() {
 		return this.draggedEmptyPimPicture;

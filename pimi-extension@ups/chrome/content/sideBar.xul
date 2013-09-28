@@ -24,6 +24,7 @@
 	<script type="application/x-javascript" src="domain/view/general.generalInterfaceTool.js"></script>
 	<script type="application/x-javascript" src="domain/view/general.generalSpaceInterfaceTool.js"></script>
 	<script type="application/x-javascript" src="domain/view/user.personalSpaceInterfaceTool.js"></script>
+	<script type="application/x-javascript" src="domain/view/user.contextualMenusInterfaceTool.js"></script>
 	<script type="application/x-javascript" src="domain/view/pim.pimsInterfaceTool.js"></script>
 	<script type="application/x-javascript" src="domain/view/microformat.microformatsInterfaceTool.js"></script>
 	<script type="application/x-javascript" src="domain/view/annotation.annotationsInterfaceTool.js"></script>

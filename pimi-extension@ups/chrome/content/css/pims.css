@@ -21,9 +21,9 @@
 	margin-top: 50px;
 }
 
-.pims_panel {
+.pims_category_panel {
 	position: fixed;
-	width: 285px; height: 83%;
+	width: 285px;
 	background: #c1d1e0;
 	padding: 3px 5px 3px 4px;
 	margin: -12px 0px 0px -38px;
@@ -192,7 +192,7 @@
 }
 
 #pims_tools_images_box {
-	position: fixed; top: 87.5%; left: 10px;
+	position: fixed; left: 10px;
 	width: 260px; height: 85px;
 	text-align: center;
 	border: 3px #c1d1e0 outset;

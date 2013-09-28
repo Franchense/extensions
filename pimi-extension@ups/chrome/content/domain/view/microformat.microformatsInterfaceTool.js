@@ -10,10 +10,11 @@ MicroformatsXulInterfaceTool
 /*
 * Constructor
 **/
-function MicroformatsXulInterfaceTool(pluginContext,webPageDomContext,webPageJsContext) {
+function MicroformatsXulInterfaceTool(pluginContext,webPageDomContext,webPageJsContext,contextualMenusInterfaceTool) {
     this.pluginContext = pluginContext;
     this.webPageDomContext = webPageDomContext;
     this.webPageJsContext = webPageJsContext;
+    this.contextualMenusInterfaceTool = contextualMenusInterfaceTool;
     this.utilInterfaceTool = new UtilInterfaceTool(pluginContext,webPageDomContext,webPageJsContext);
 }
 /*-----------------------------------------------
@@ -35,9 +36,16 @@ MicroformatsXulInterfaceTool.prototype = {
         oldMicroformatsPanelView.parentNode.replaceChild(newMicroformatsPanelView, oldMicroformatsPanelView);
     },
     getMicroformatsPanelView: function(microformatsManager) {
-        var microformatsBox = this.getPluginElement('vbox',['id'],
-                                                           [MICROFORMATS_PANEL_ID]);
+        var microformatsBox = this.getPluginElement('vbox',['id','context'],
+                                                           [MICROFORMATS_PANEL_ID,'microformats_panel_contextual_menu']);
         microformatsBox.appendChild(microformatsManager.getTreeView());
+        microformatsBox.appendChild(this.contextualMenusInterfaceTool.getMicroformatsPanelContextMenuView(microformatsManager));
+
+        var rootElement = this.utilInterfaceTool.getRootElement();
+        var otherElementsHeight = 29;
+        var microformatsBoxHeight = this.utilInterfaceTool.getSideBarHeight() - otherElementsHeight;
+        microformatsBox.style.height = microformatsBoxHeight + 'px';
+
         return microformatsBox;
     },
     updateMicroformatsTreeView: function(microformatsManager) {
@@ -54,6 +62,13 @@ MicroformatsXulInterfaceTool.prototype = {
         annotationMicroformatsTreeCols.appendChild(annotationMicroformatsTreeCol);
         annotationMicroformatsTree.appendChild(annotationMicroformatsTreeCols);
         annotationMicroformatsTree.appendChild(this.getMicroformatsTreeBodyView(microformatsManager));
+        //annotationMicroformatsTree.appendChild(this.contextualMenusInterfaceTool.getMicroformatsTreeContextMenuView(microformatsManager));
+
+        var rootElement = this.utilInterfaceTool.getRootElement();
+        var otherElementsHeight = 244;
+        var annotationMicroformatsTreeHeight = this.utilInterfaceTool.getSideBarHeight() - otherElementsHeight;
+        annotationMicroformatsTree.style.height = annotationMicroformatsTreeHeight + 'px';
+
         return annotationMicroformatsTree;
     },
     getMicroformatsTreeBodyView: function(microformatsManager) {
@@ -158,6 +173,12 @@ MicroformatsXulInterfaceTool.prototype = {
     setWebPageJsContext: function(webPageJsContext) {
         this.webPageJsContext = webPageJsContext;
     },
+    getContextualMenusInterfaceTool: function() {
+        return this.contextualMenusInterfaceTool;
+    },
+    setContextualMenusInterfaceTool: function(contextualMenusInterfaceTool) {
+        this.contextualMenusInterfaceTool = contextualMenusInterfaceTool;
+    },
     getUtilInterfaceTool: function() {
         return this.utilInterfaceTool;
     },
@@ -174,10 +195,11 @@ MicroformatsHtmlInterfaceTool
 /*
 * Constructor
 **/
-function MicroformatsHtmlInterfaceTool(pluginContext,webPageDomContext,webPageJsContext) {
+function MicroformatsHtmlInterfaceTool(pluginContext,webPageDomContext,webPageJsContext,contextualMenusInterfaceTool) {
     this.pluginContext = pluginContext;
     this.webPageDomContext = webPageDomContext;
     this.webPageJsContext = webPageJsContext;
+    this.contextualMenusInterfaceTool = contextualMenusInterfaceTool;
     this.utilInterfaceTool = new UtilInterfaceTool(pluginContext,webPageDomContext,webPageJsContext);
 }
 /*-----------------------------------------------

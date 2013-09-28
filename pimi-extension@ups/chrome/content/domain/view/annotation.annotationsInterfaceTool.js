@@ -11,10 +11,11 @@ AnnotationsXulInterfaceTool
 /*
 * Constructor
 **/
-function AnnotationsXulInterfaceTool(pluginContext,webPageDomContext,webPageJsContext) {
+function AnnotationsXulInterfaceTool(pluginContext,webPageDomContext,webPageJsContext,contextualMenusInterfaceTool) {
     this.pluginContext = pluginContext;
     this.webPageDomContext = webPageDomContext;
     this.webPageJsContext = webPageJsContext;
+    this.contextualMenusInterfaceTool = contextualMenusInterfaceTool;
     this.utilInterfaceTool = new UtilInterfaceTool(pluginContext,webPageDomContext,webPageJsContext);
 }
 /*-----------------------------------------------
@@ -37,11 +38,12 @@ AnnotationsXulInterfaceTool.prototype = {
 	},
 	getAnnotationsPanelView: function(annotationsManager) {
 		var generalBox = this.getPluginElement('vbox',['id','context'],
-                                                 	  [ANNOTATION_PANEL_ID,'general_contextual_menu']);
+                                                 	  [ANNOTATION_PANEL_ID,'annotations_panel_contextual_menu']);
 		//generalBox.appendChild(this.getSemanticDetectionCheckboxView(annotationsManager));
 		generalBox.appendChild(this.getPersonalAnnotationView(annotationsManager));
 		generalBox.appendChild(this.getAnnotationDescriptionView(annotationsManager));
 		generalBox.appendChild(this.getMicroformatAnnotationView(annotationsManager));
+		generalBox.appendChild(this.contextualMenusInterfaceTool.getAnnotationsPanelContextMenuView(annotationsManager));
 		return generalBox;
 	},
 	getSemanticDetectionCheckboxView: function(annotationsManager) {
@@ -140,6 +142,12 @@ AnnotationsXulInterfaceTool.prototype = {
 	setWebPageJsContext: function(webPageJsContext) {
 		this.webPageJsContext = webPageJsContext;
 	},
+    getContextualMenusInterfaceTool: function() {
+        return this.contextualMenusInterfaceTool;
+    },
+    setContextualMenusInterfaceTool: function(contextualMenusInterfaceTool) {
+        this.contextualMenusInterfaceTool = contextualMenusInterfaceTool;
+    },
 	getUtilInterfaceTool: function() {
 		return this.utilInterfaceTool;
 	},
@@ -156,10 +164,11 @@ AnnotationsHtmlInterfaceTool
 /*
 * Constructor
 **/
-function AnnotationsHtmlInterfaceTool(pluginContext,webPageDomContext,webPageJsContext) {
+function AnnotationsHtmlInterfaceTool(pluginContext,webPageDomContext,webPageJsContext,contextualMenusInterfaceTool) {
     this.pluginContext = pluginContext;
     this.webPageDomContext = webPageDomContext;
     this.webPageJsContext = webPageJsContext;
+    this.contextualMenusInterfaceTool = contextualMenusInterfaceTool;
     this.utilInterfaceTool = new UtilInterfaceTool(pluginContext,webPageDomContext,webPageJsContext);
 }
 /*-----------------------------------------------

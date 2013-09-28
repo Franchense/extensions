@@ -41,7 +41,9 @@ PersonalSpace.prototype = {
     	/************** TO WORK IN LOCAL --> TO DELETE !!!! **************/
 		/*var pimsXmlDoc = this.utilityTool.loadXMLDoc('data/pims/pimsTestFile.xml');
 		this.pimsManager.import(pimsXmlDoc);
-    	this.createView();*/
+		this.getConfigurationManager().init();
+    	this.createView();
+    	this.selectSideBarMenu('pims');*/
 		/*****************************************************************/
 	},
     exit: function() {
@@ -161,8 +163,10 @@ PersonalSpace.prototype = {
 							obj.setClean();
 							obj.setIdle();
 						}
-						else
+						else {
 							alert(pimsSaveProblemMessage);
+							obj.setIdle();
+						}
 					}
 				};
 				httpRequest.send(params);

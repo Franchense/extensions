@@ -14,12 +14,7 @@
 #pimi_home_account_creation, #pimi_home_disconnected {
 	text-align: center;
 	padding: 0px 20px;
-	margin-top: 160px;
 	margin-left: 15px;
-}
-
-#pimi_home_account_creation {
-	margin-top: 120px;
 }
 
 .form_label {
@@ -42,20 +37,4 @@
 
 #account_creation_create_button, #account_connexion_connect_button {
 	margin-top: 30px;
-}
-
-#account_creation_connexion_button {
-	margin-top: 140px;
-}
-
-#account_connexion_account_creation_button {
-	margin-top: 216px;
-}
-
-#pimi_home_connected {
-	display: none;
-	margin-top: 105px;
-	text-align: center;
-	padding: 0px 20px;
-	font-weight: bold;
 }

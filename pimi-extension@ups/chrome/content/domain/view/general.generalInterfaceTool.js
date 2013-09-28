@@ -60,6 +60,20 @@ UtilInterfaceTool.prototype = {
         return element;
     },
     /*-----------------------------------------------
+        Sidebar methods
+    -----------------------------------------------*/
+    getRootElement: function() {
+        return this.pluginContext.getElementById('pimi_sidebar');
+    },
+    getSideBarHeight: function() {
+        var rootElement = this.getRootElement();
+        return rootElement.clientHeight;
+    },
+    getSideBarWidth: function() {
+        var rootElement = this.getRootElement();
+        return rootElement.clientWidth;
+    },
+    /*-----------------------------------------------
         Getters & Setters
     -----------------------------------------------*/
     getPluginContext: function() {
@@ -97,9 +111,10 @@ function XulInterfaceTool(pluginContext,webPageDomContext,webPageJsContext) {
     this.utilInterfaceTool = new UtilInterfaceTool(pluginContext,webPageDomContext,webPageJsContext);
     this.generalSpaceInterfaceTool = new GeneralSpaceXulInterfaceTool(pluginContext,webPageDomContext,webPageJsContext);
     this.personalSpaceInterfaceTool = new PersonalSpaceXulInterfaceTool(pluginContext,webPageDomContext,webPageJsContext);
-    this.pimsInterfaceTool = new PimsXulInterfaceTool(pluginContext,webPageDomContext,webPageJsContext);
-    this.annotationsInterfaceTool = new AnnotationsXulInterfaceTool(pluginContext,webPageDomContext,webPageJsContext);
-    this.microformatsInterfaceTool = new MicroformatsXulInterfaceTool(pluginContext,webPageDomContext,webPageJsContext);
+    this.contextualMenusInterfaceTool = new ContextualMenusXulInterfaceTool(pluginContext,webPageDomContext,webPageJsContext);
+    this.pimsInterfaceTool = new PimsXulInterfaceTool(pluginContext,webPageDomContext,webPageJsContext,this.contextualMenusInterfaceTool);
+    this.microformatsInterfaceTool = new MicroformatsXulInterfaceTool(pluginContext,webPageDomContext,webPageJsContext,this.contextualMenusInterfaceTool);
+    this.annotationsInterfaceTool = new AnnotationsXulInterfaceTool(pluginContext,webPageDomContext,webPageJsContext,this.contextualMenusInterfaceTool);
 }
 /*-----------------------------------------------
     Prototype definition
@@ -146,8 +161,8 @@ XulInterfaceTool.prototype = {
         this.generalSpaceInterfaceTool.createAccountPanelsView(generalSpace);
     },
     /** Account panel methods */
-    showHideAccountPanel: function(show){
-        this.generalSpaceInterfaceTool.showHideAccountPanel(show);
+    deleteAccountPanel: function(){
+        this.generalSpaceInterfaceTool.deleteAccountPanel();
     },
     switchAccountPanels: function(generalSpace) {
         this.generalSpaceInterfaceTool.switchAccountPanels(generalSpace);
@@ -183,15 +198,16 @@ XulInterfaceTool.prototype = {
         PersonalSpaceInterfaceTool methods
     -----------------------------------------------*/
     /** Panels methods */
+    selectPanel: function(panelName){
+        this.personalSpaceInterfaceTool.selectPanel(panelName);
+    },
     createPanelsView: function(personalSpace) {
         this.personalSpaceInterfaceTool.createPanelsView(personalSpace);
     },
     deletePanelsView: function(personalSpace) {
         this.personalSpaceInterfaceTool.deletePanelsView(personalSpace);
     },
-    selectPanel: function(panelName){
-        this.personalSpaceInterfaceTool.selectPanel(panelName);
-    },
+    /** Console methods */
     addLogConsoleMessage: function(message) {
         this.personalSpaceInterfaceTool.addLogConsoleMessage(message);
     },
@@ -201,6 +217,9 @@ XulInterfaceTool.prototype = {
     /** General */
     updateCategoriesTabboxView: function(pimsManager) {
         this.pimsInterfaceTool.updateCategoriesTabboxView(pimsManager);
+    },
+    updatePimsPanelView: function(pimsManager) {
+        this.pimsInterfaceTool.updatePimsPanelView(pimsManager);
     },
     getPimsPanelView: function(pimsManager) {
         return this.pimsInterfaceTool.getPimsPanelView(pimsManager);
@@ -334,6 +353,12 @@ XulInterfaceTool.prototype = {
     setPersonalSpaceInterfaceTool: function(personalSpaceInterfaceTool) {
         this.personalSpaceInterfaceTool = personalSpaceInterfaceTool;
     },
+    getContextualMenusInterfaceTool: function() {
+        return this.contextualMenusInterfaceTool;
+    },
+    setContextualMenusInterfaceTool: function(contextualMenusInterfaceTool) {
+        this.contextualMenusInterfaceTool = contextualMenusInterfaceTool;
+    },
     getPimsInterfaceTool: function() {
         return this.pimsInterfaceTool;
     },
@@ -369,9 +394,10 @@ function HtmlInterfaceTool(pluginContext,webPageDomContext,webPageJsContext) {
     this.utilInterfaceTool = new UtilInterfaceTool(pluginContext,webPageDomContext,webPageJsContext);
     this.generalSpaceInterfaceTool = new GeneralSpaceHtmlInterfaceTool(pluginContext,webPageDomContext,webPageJsContext);
     this.personalSpaceInterfaceTool = new PersonalSpaceHtmlInterfaceTool(pluginContext,webPageDomContext,webPageJsContext);
-    this.pimsInterfaceTool = new PimsHtmlInterfaceTool(pluginContext,webPageDomContext,webPageJsContext);
-    this.annotationsInterfaceTool = new AnnotationsHtmlInterfaceTool(pluginContext,webPageDomContext,webPageJsContext);
-    this.microformatsInterfaceTool = new MicroformatsHtmlInterfaceTool(pluginContext,webPageDomContext,webPageJsContext);
+    this.contextualMenusInterfaceTool = new ContextualMenusHtmlInterfaceTool(pluginContext,webPageDomContext,webPageJsContext);
+    this.pimsInterfaceTool = new PimsHtmlInterfaceTool(pluginContext,webPageDomContext,webPageJsContext,this.contextualMenusInterfaceTool);
+    this.microformatsInterfaceTool = new MicroformatsHtmlInterfaceTool(pluginContext,webPageDomContext,webPageJsContext,this.contextualMenusInterfaceTool);
+    this.annotationsInterfaceTool = new AnnotationsHtmlInterfaceTool(pluginContext,webPageDomContext,webPageJsContext,this.contextualMenusInterfaceTool);
 }
 /*-----------------------------------------------
     Prototype definition
