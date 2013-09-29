@@ -140,6 +140,21 @@ PimsManager.prototype = {
 		if(this.getSelectedCategory() != null)
 			this.renameCategoryDialog(this.getSelectedCategory());
 	},
+	deleteAllCategoryPimsDialog: function(category) {
+		if(confirm(categoryDeleteAllPimsConfirmationMessage)) {
+			for(var i = 0; i < this.pims.length; i++) {
+				var currentPim = this.pims[i];
+				if(currentPim.getCategory().getId() == category.getId()) {
+					this.deletePim(currentPim);
+					this.setDirty();
+				}
+			}
+			category.updatePanelView();
+		}
+	},
+	deleteAllPimsOfSelectedCategoryDialog: function() {
+		this.deleteAllCategoryPimsDialog(this.selectedCategory);
+	},
 	deleteCategory: function(category) {
 		if(category.getCanBeDeleted())
 			this.categories.remove(category);

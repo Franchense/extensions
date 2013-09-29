@@ -164,6 +164,9 @@ XulInterfaceTool.prototype = {
     deleteAccountPanel: function(){
         this.generalSpaceInterfaceTool.deleteAccountPanel();
     },
+    updateAccountPanelsView: function(generalSpace) {
+        this.generalSpaceInterfaceTool.updateAccountPanelsView(this);
+    },
     switchAccountPanels: function(generalSpace) {
         this.generalSpaceInterfaceTool.switchAccountPanels(generalSpace);
     },
@@ -198,16 +201,18 @@ XulInterfaceTool.prototype = {
         PersonalSpaceInterfaceTool methods
     -----------------------------------------------*/
     /** Panels methods */
-    selectPanel: function(panelName){
-        this.personalSpaceInterfaceTool.selectPanel(panelName);
-    },
     createPanelsView: function(personalSpace) {
         this.personalSpaceInterfaceTool.createPanelsView(personalSpace);
     },
     deletePanelsView: function(personalSpace) {
         this.personalSpaceInterfaceTool.deletePanelsView(personalSpace);
     },
-    /** Console methods */
+    selectPanel: function(panelName){
+        this.personalSpaceInterfaceTool.selectPanel(panelName);
+    },
+    getSelectedPanelName: function(){
+        return this.personalSpaceInterfaceTool.getSelectedPanelName();
+    },
     addLogConsoleMessage: function(message) {
         this.personalSpaceInterfaceTool.addLogConsoleMessage(message);
     },

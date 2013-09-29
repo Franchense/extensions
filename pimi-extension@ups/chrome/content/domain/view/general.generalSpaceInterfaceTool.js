@@ -178,6 +178,10 @@ GeneralSpaceXulInterfaceTool.prototype = {
         var accountPanel = this.pluginContext.getElementById(ACCOUNT_PANEL_ID);
         accountPanel.parentNode.removeChild(accountPanel);
     },
+    updateAccountPanelsView: function(generalSpace) {
+        this.deleteAccountPanel();
+        this.createAccountPanelsView(generalSpace);
+    },
     switchAccountPanels: function(generalSpace) {
         var accountConnexionForm = this.pluginContext.getElementById(ACCOUNT_SIGNIN_PANEL_ID);
         var accountCreationForm = this.pluginContext.getElementById(ACCOUNT_SIGNUP_PANEL_ID);

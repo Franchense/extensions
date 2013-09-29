@@ -17,3 +17,7 @@ function initGeneral() {
 function exitGeneral() {
 	generalXulSpace.exit();
 }
+
+function resizeGeneral() {
+	generalXulSpace.updateView();
+}

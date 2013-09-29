@@ -30,12 +30,12 @@ GeneralSpace.prototype = {
 		/*************************************************************************************
 								AUTOLOG --> TO DELETE
 		*************************************************************************************/
-		//this.enableDisableAccountPanelButtons(false);
+		this.enableDisableAccountPanelButtons(false);
     	/************** TO WORK ONLINE **************/
 		//this.sendAccountConnexionRequest('Jean', 'jean');
 		//this.sendAccountConnexionRequest('Vincent', 'vins');
     	/************** TO WORK IN LOCAL **************/
-		//this.connectPimiUser('Jean','16cdf1v6f5d4vdf', regularUserTypeName);
+		this.connectPimiUser('Jean','16cdf1v6f5d4vdf', regularUserTypeName);
 		/*************************************************************************************
 		*************************************************************************************/
 	},
@@ -294,6 +294,15 @@ GeneralSpace.prototype = {
     deleteAccountPanel: function(){
         this.interfaceTool.deleteAccountPanel();
     },
+    updateView: function(){
+    	if(this.personalSpace == null)
+        	this.updateAccountPanelsView();
+        else
+        	this.personalSpace.updateView();
+    },
+	updateAccountPanelsView: function() {
+		this.interfaceTool.updateAccountPanelsView(this);
+	},
 	switchAccountPanels: function() {
 		this.interfaceTool.switchAccountPanels(this);
 	},

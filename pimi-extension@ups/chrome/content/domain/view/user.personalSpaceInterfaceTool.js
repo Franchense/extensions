@@ -26,20 +26,45 @@ PersonalSpaceXulInterfaceTool.prototype = {
         return this.utilInterfaceTool.getPluginElement(elementType,attributesNames,attributesValues);
     },
     /*-----------------------------------------------
-        General methods
+        Panels methods
     -----------------------------------------------*/
+    createPanelsView: function(personalSpace) {
+        var rootElement = this.utilInterfaceTool.getRootElement();
+        /** Menu bar */
+        rootElement.appendChild(this.getMenuBarView(personalSpace));
+        /** Pims panel */
+        rootElement.appendChild(personalSpace.getPimsManager().getPanelView());
+        /** Microformats panel */
+        if(personalSpace.getUser().isUser())
+            rootElement.appendChild(personalSpace.getMicroformatsManager().getView());
+        /** Annotation panel */
+        else if(personalSpace.getUser().isAnnotator())
+            rootElement.appendChild(personalSpace.getAnnotationsManager().getPanelView());
+    },
+    deletePanelsView: function(personalSpace) {
+        var rootElement = this.utilInterfaceTool.getRootElement();
+        /** Menu bar */
+        var menuBarView = document.getElementById(MENU_ID);
+        rootElement.removeChild(menuBarView);
+        /** Pims panel */
+        var pimsPanelView = document.getElementById(PIMS_PANEL_ID);
+        rootElement.removeChild(pimsPanelView);
+        /** Microformats panel */
+        if(personalSpace.getUser().isUser()) {
+            var microformatsPanelView = document.getElementById(MICROFORMATS_PANEL_ID);
+            rootElement.removeChild(microformatsPanelView);
+        }
+        /** Annotation panel */
+        else if(personalSpace.getUser().isAnnotator()) {
+            var annotationsPanelView = document.getElementById(ANNOTATION_PANEL_ID);
+            rootElement.removeChild(annotationsPanelView);
+        }
+    },
     selectPanel: function(panelName){
         var pimsPanel = this.pluginContext.getElementById(PIMS_PANEL_ID);
         var microformatsPanel = this.pluginContext.getElementById(MICROFORMATS_PANEL_ID);
         var annotationsPanel = this.pluginContext.getElementById(ANNOTATION_PANEL_ID);
-        if(panelName == 'pims') {
-            pimsPanel.hidden = false;
-            if(microformatsPanel != null)
-                microformatsPanel.hidden = true;
-            if(annotationsPanel != null)
-                annotationsPanel.hidden = true;
-        }
-        else if(panelName == 'microformats') {
+        if(panelName == 'microformats') {
             pimsPanel.hidden = true;
             if(microformatsPanel != null)
                 microformatsPanel.hidden = false;
@@ -53,45 +78,28 @@ PersonalSpaceXulInterfaceTool.prototype = {
             if(annotationsPanel != null)
                 annotationsPanel.hidden = false;
         }
+        else {
+            pimsPanel.hidden = false;
+            if(microformatsPanel != null)
+                microformatsPanel.hidden = true;
+            if(annotationsPanel != null)
+                annotationsPanel.hidden = true;
+        }
+    },
+    getSelectedPanelName: function(){
+        var selectedPanelName = '';
+        var microformatsPanel = this.pluginContext.getElementById(MICROFORMATS_PANEL_ID);
+        var annotationsPanel = this.pluginContext.getElementById(ANNOTATION_PANEL_ID);
+        if((microformatsPanel != null) && (!microformatsPanel.hidden))
+            selectedPanelName = 'microformats';
+        else if((annotationsPanel != null) && (!annotationsPanel.hidden))
+            selectedPanelName = 'annotations';
+        else
+            selectedPanelName = 'pims';
+        return selectedPanelName;
     },
     addLogConsoleMessage: function(message) {
         
-    },
-    /*-----------------------------------------------
-        Init methods
-    -----------------------------------------------*/
-    createPanelsView: function(personalSpace) {
-        var rootElement = this.utilInterfaceTool.getRootElement();
-        /** Menu bar */
-        rootElement.appendChild(this.getMenuBarView(personalSpace));
-        /** Pims panel */
-        rootElement.appendChild(personalSpace.getPimsManager().getPanelView());
-        /** Annotations and microformats panels */
-        if(personalSpace.getUser().isUser())
-            rootElement.appendChild(personalSpace.getMicroformatsManager().getView());
-        else if(personalSpace.getUser().isAnnotator())
-            rootElement.appendChild(personalSpace.getAnnotationsManager().getPanelView());
-    },
-    /*-----------------------------------------------
-        Exit methods
-    -----------------------------------------------*/
-    deletePanelsView: function(personalSpace) {
-        var rootElement = this.utilInterfaceTool.getRootElement();
-        /** Menu bar */
-        var menuBarView = document.getElementById(MENU_ID);
-        rootElement.removeChild(menuBarView);
-        /** Pims panel */
-        var pimsPanelView = document.getElementById(PIMS_PANEL_ID);
-        rootElement.removeChild(pimsPanelView);
-        /** Annotations panel */
-        if(personalSpace.getUser().isUser()) {
-            var microformatsPanelView = document.getElementById(MICROFORMATS_PANEL_ID);
-            rootElement.removeChild(microformatsPanelView);
-        }
-        else if(personalSpace.getUser().isAnnotator()) {
-            var annotationsPanelView = document.getElementById(ANNOTATION_PANEL_ID);
-            rootElement.removeChild(annotationsPanelView);
-        }
     },
     /*-----------------------------------------------
         Menu bar method

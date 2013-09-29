@@ -35,15 +35,15 @@ PersonalSpace.prototype = {
 		General methods
 	-----------------------------------------------*/
     init: function() {
-    	this.load();
+    	//this.load();
 		//this.enablePimsCompletion();
 		//this.enableInputsSemanticDetection();
     	/************** TO WORK IN LOCAL --> TO DELETE !!!! **************/
-		/*var pimsXmlDoc = this.utilityTool.loadXMLDoc('data/pims/pimsTestFile.xml');
+		var pimsXmlDoc = this.utilityTool.loadXMLDoc('data/pims/pimsTestFile.xml');
 		this.pimsManager.import(pimsXmlDoc);
 		this.getConfigurationManager().init();
     	this.createView();
-    	this.selectSideBarMenu('pims');*/
+    	this.selectSideBarMenu('pims');
 		/*****************************************************************/
 	},
     exit: function() {
@@ -186,6 +186,12 @@ PersonalSpace.prototype = {
     },
     deletePanelsView: function() {
         this.interfaceTool.deletePanelsView(this);
+    },
+    updateView: function() {
+    	var selectedPanelName = this.interfaceTool.getSelectedPanelName();
+        this.deletePanelsView();
+        this.createPanelsView();
+    	this.selectSideBarMenu(selectedPanelName);
     },
 	selectSideBarMenu: function(panelName){
 		this.interfaceTool.selectPanel(panelName);

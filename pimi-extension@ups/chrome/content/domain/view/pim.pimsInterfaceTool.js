@@ -386,8 +386,8 @@ PimsXulInterfaceTool.prototype = {
 	},
 	getPimElementView: function(pimElement) {
 		var obj = this;
-		var pimElementView = this.getPluginElement('hbox',['id','context'],
-                                                 	  	  [pimElement.getId(),'pims_elements_contextual_menu']);
+		var pimElementView = this.getPluginElement('hbox',['id','class','context'],
+                                                 	  	  [pimElement.getId(),'pim_element','pims_elements_contextual_menu']);
 		pimElementView.appendChild(this.getPimElementBodyView(pimElement));
 		if(!pimElement.isEdited() && pimElement.getPimsManager().getShowPimsElementsIconicMenus())
 			pimElementView.appendChild(this.getPimElementToolsBoxView(pimElement));

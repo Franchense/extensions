@@ -12,6 +12,7 @@
         title="Pi@ff general window"
 		onload="initSideBar();"
 		onunload="exitSideBar();"
+	    onresize="resizeSideBar();"
 	    ondragenter="doDragEnterSideBar(event);"
 	    ondragover="doDragOverSideBar(event);">
 
@@ -61,6 +62,9 @@
 			}
 			function exitSideBar() {
 				exitGeneral();
+			}
+			function resizeSideBar() {
+				resizeGeneral();
 			}
 			function doDragEnterSideBar(event) {
 				//doDragEnterFormGroup(event);

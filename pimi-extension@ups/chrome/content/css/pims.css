@@ -88,21 +88,21 @@
 	position: relative; top: 0px; left: -10px;
 }
 
-.pim_element_box {
-	width: 185px; height: 45px;
-	padding: 12px 10px;
-	margin: 5px 0px;
-    background-color: #bfa86f;
-	border: solid #a67b25 1px;
-	border-radius: 2px; -moz-border-radius: 2px; -webkit-border-radius: 2px; -khtml-border-radius: 2px;
-}
-
 .pim_element_box:first-child {
 	margin-top: 0px;
 }
 
 .pim_element_box:last-child {
 	margin-bottom: 0px;
+}
+
+.pim_element {
+	width: 185px; height: 45px;
+	padding: 12px 10px;
+	margin: 5px 0px;
+    background-color: #bfa86f;
+	border: solid #a67b25 1px;
+	border-radius: 2px; -moz-border-radius: 2px; -webkit-border-radius: 2px; -khtml-border-radius: 2px;
 }
 
 .pim_element_tools_images_box {
