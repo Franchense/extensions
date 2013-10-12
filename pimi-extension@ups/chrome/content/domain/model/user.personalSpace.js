@@ -35,15 +35,15 @@ PersonalSpace.prototype = {
 		General methods
 	-----------------------------------------------*/
     init: function() {
-    	//this.load();
+    	this.load();
 		//this.enablePimsCompletion();
 		//this.enableInputsSemanticDetection();
     	/************** TO WORK IN LOCAL --> TO DELETE !!!! **************/
-		var pimsXmlDoc = this.utilityTool.loadXMLDoc('data/pims/pimsTestFile.xml');
+		/*var pimsXmlDoc = this.utilityTool.loadXMLDoc('data/pims/pimsTestFile.xml');
 		this.pimsManager.import(pimsXmlDoc);
 		this.getConfigurationManager().init();
     	this.createView();
-    	this.selectSideBarMenu('pims');
+    	this.selectSideBarMenu('pims');*/
 		/*****************************************************************/
 	},
     exit: function() {

@@ -32,10 +32,10 @@ GeneralSpace.prototype = {
 		*************************************************************************************/
 		this.enableDisableAccountPanelButtons(false);
     	/************** TO WORK ONLINE **************/
-		//this.sendAccountConnexionRequest('Jean', 'jean');
-		//this.sendAccountConnexionRequest('Vincent', 'vins');
+		this.sendAccountConnexionRequest('Jean', 'jean');
+		this.sendAccountConnexionRequest('Vincent', 'vins');
     	/************** TO WORK IN LOCAL **************/
-		this.connectPimiUser('Jean','16cdf1v6f5d4vdf', regularUserTypeName);
+		//this.connectPimiUser('Jean','16cdf1v6f5d4vdf', regularUserTypeName);
 		/*************************************************************************************
 		*************************************************************************************/
 	},
